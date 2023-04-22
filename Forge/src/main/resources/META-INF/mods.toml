@@ -32,7 +32,7 @@ logoFile="icon.png" #optional
 authors="Hidoni" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Transmog -
+Change the appearance of your items without modifying their behavior/stats!
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.transmog]] #optional

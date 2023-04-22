@@ -4,7 +4,7 @@
     "version": "${version}",
   
     "name": "Transmog",
-    "description": "Transmog - ",
+    "description": "Change the appearance of your items without modifying their behavior/stats!",
     "authors": [
       "Hidoni"
     ],
