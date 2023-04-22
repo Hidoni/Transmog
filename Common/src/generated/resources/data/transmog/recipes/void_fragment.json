@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "minecraft:obsidian"
+    },
+    "Y": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "Z": {
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "pattern": [
+    " Z ",
+    "XYX",
+    " X "
+  ],
+  "result": {
+    "item": "transmog:void_fragment"
+  },
+  "show_notification": true
+}

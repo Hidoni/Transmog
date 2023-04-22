@@ -1,0 +1,39 @@
+{
+    "schemaVersion": 1,
+    "id": "transmog",
+    "version": "${version}",
+  
+    "name": "Transmog",
+    "description": "Transmog - ",
+    "authors": [
+      "Hidoni"
+    ],
+    "contact": {
+      "sources": "https://github.com/Hidoni/Transmog"
+    },
+  
+    "license": "MIT",
+    "icon": "icon.png",
+  
+    "environment": "*",
+    "entrypoints": {
+      "main": [
+        "com.hidoni.transmog.TransmogFabric"
+      ],
+      "client": [
+        "com.hidoni.transmog.TransmogFabricClient"
+      ]
+    },
+    "mixins": [
+      "mixins.transmog.common.json",
+      "mixins.transmog.fabric.json"
+    ],
+  
+    "depends": {
+      "fabricloader": ">=0.14",
+      "fabric": "*",
+      "minecraft": ["1.19.4"],
+      "java": ">=17"
+    }
+  }
+  

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "com.hidoni",
+    "id": "transmog",
+    "version": "${version}",
+    "metadata": {
+      "name": "Transmog",
+      "description": "Transmog",
+      "authors": [
+        "Hidoni"
+      ],
+      "contact": {
+        "sources": "https://github.com/Hidoni/Transmog"
+      },
+      "license": "MIT",
+      "icon": "icon.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "entrypoints": {
+      "init": [
+        "com.hidoni.transmog.TransmogQuilt"
+      ],
+      "client_init": [
+        "com.hidoni.transmog.TransmogQuiltClient"
+      ]
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "versions": ">=0.18.6-"
+      },
+      {
+        "id": "quilted_fabric_api",
+        "versions": ">=6.0.0-"
+      },
+      {
+        "id": "minecraft",
+        "versions": ["1.19.4"]
+      }
+    ]
+  },
+  "mixin": [
+    "mixins.transmog.common.json",
+    "mixins.transmog.quilt.json"
+  ]
+}

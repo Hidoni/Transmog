@@ -1,0 +1,112 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#bottom"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#side"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#side"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#bottom"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#side"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        8,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#top"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#side"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#side"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#side"
+        }
+      },
+      "from": [
+        0,
+        8,
+        0
+      ],
+      "to": [
+        16,
+        12,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "east": {
+          "texture": "#side"
+        },
+        "north": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        }
+      },
+      "from": [
+        15,
+        12,
+        15
+      ],
+      "to": [
+        1,
+        8,
+        1
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "transmog:block/transmogrification_table_bottom",
+    "particle": "transmog:block/transmogrification_table_side",
+    "side": "transmog:block/transmogrification_table_side",
+    "top": "transmog:block/transmogrification_table_top"
+  }
+}
