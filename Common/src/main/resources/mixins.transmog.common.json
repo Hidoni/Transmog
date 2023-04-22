@@ -8,6 +8,7 @@
   ],
   "client": [
     "AbstractContainerScreenMixin",
+    "ArmorStandMixin",
     "ItemRendererMixin",
     "MobMixin",
     "PlayerMixin"
