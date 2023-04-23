@@ -23,6 +23,9 @@
       ],
       "client_init": [
         "com.hidoni.transmog.TransmogQuiltClient"
+      ],
+      "modmenu": [
+        "com.hidoni.transmog.config.ModMenuApiImpl"
       ]
     },
     "depends": [
@@ -36,7 +39,9 @@
       },
       {
         "id": "minecraft",
-        "versions": ["1.19.4"]
+        "versions": [
+          "1.19.4"
+        ]
       }
     ]
   },

@@ -14,4 +14,6 @@ public interface IPlatformHelper {
     }
 
     boolean isClientEnv();
+
+    Path getConfigDirectory();
 }

@@ -1,5 +1,6 @@
 package com.hidoni.transmog;
 
+import com.hidoni.transmog.config.Config;
 import com.hidoni.transmog.registry.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
@@ -9,6 +10,10 @@ import java.util.Objects;
 public class TransmogUtils {
     public static boolean isItemStackTransmogged(ItemStack itemStack) {
         return itemStack.getTagElement(Constants.TRANSMOG_ITEM_TAG) != null;
+    }
+
+    public static boolean isHiddenItem(ItemStack appearanceItem) {
+        return appearanceItem.is(ModItems.VOID_FRAGMENT.get());
     }
 
     public static ItemStack getAppearanceStackFromItemStack(ItemStack itemStack) {
@@ -24,15 +29,25 @@ public class TransmogUtils {
             return itemStack;
         }
         ItemStack appearanceItem = getAppearanceStackFromItemStack(itemStack);
-        if (!keepHiddenItem && appearanceItem.is(ModItems.VOID_FRAGMENT.get())) {
+        if (!keepHiddenItem && isHiddenItem(appearanceItem)) {
             return ItemStack.EMPTY;
         }
         return appearanceItem;
     }
 
     public static ItemStack getAppearanceStackOrOriginal(ItemStack itemStack) {
-        if (isItemStackTransmogged(itemStack) && !RenderUtils.isCalledForInventory()) {
-            return getAppearanceItemStack(itemStack, false);
+        if (Config.showTransmogs && isItemStackTransmogged(itemStack)) {
+            if (!RenderUtils.isCalledForInventory()) {
+                return getAppearanceItemStack(itemStack, false);
+            }
+            else if (Config.showTransmogsInInventory) {
+                ItemStack appearanceItemStack = getAppearanceItemStack(itemStack, true);
+                if (isHiddenItem(appearanceItemStack)) {
+                    return itemStack;
+                }
+                appearanceItemStack.setCount(itemStack.getCount());
+                return appearanceItemStack;
+            }
         }
         return itemStack;
     }

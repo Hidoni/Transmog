@@ -5,6 +5,8 @@ import net.fabricmc.api.EnvType;
 import org.quiltmc.loader.api.QuiltLoader;
 import org.quiltmc.loader.api.minecraft.MinecraftQuiltLoader;
 
+import java.nio.file.Path;
+
 public class QuiltPlatformHelper implements IPlatformHelper {
 
     @Override
@@ -25,5 +27,10 @@ public class QuiltPlatformHelper implements IPlatformHelper {
     @Override
     public boolean isClientEnv() {
         return MinecraftQuiltLoader.getEnvironmentType() == EnvType.CLIENT;
+    }
+
+    @Override
+    public Path getConfigDirectory() {
+        return QuiltLoader.getConfigDir();
     }
 }

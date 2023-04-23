@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MobMixin {
     @Inject(method = "getItemBySlot", at=@At("RETURN"), cancellable = true)
     private void transmogItemBySlot(EquipmentSlot slot, CallbackInfoReturnable<ItemStack> cir) {
-        if (RenderUtils.isCalledForRendering() && !RenderUtils.isCalledForInventory() && TransmogUtils.isItemStackTransmogged(cir.getReturnValue())) {
-            cir.setReturnValue(TransmogUtils.getAppearanceItemStack(cir.getReturnValue(), false));
+        if (RenderUtils.isCalledForRendering()) {
+            cir.setReturnValue(TransmogUtils.getAppearanceStackOrOriginal(cir.getReturnValue()));
         }
     }
 }

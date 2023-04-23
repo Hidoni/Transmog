@@ -2,7 +2,6 @@ package com.hidoni.transmog.mixin;
 
 import com.hidoni.transmog.TransmogUtils;
 import com.hidoni.transmog.i18n.TranslationKeys;
-import com.hidoni.transmog.registry.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -27,12 +26,12 @@ public class ItemStackMixin {
     private void addTransmogTooltipToItemStack(Player player, TooltipFlag tooltipFlag, CallbackInfoReturnable<List<Component>> cir) {
         ItemStack thisStack = (ItemStack) ((Object) this);
         if (TransmogUtils.isItemStackTransmogged(thisStack)) {
-            ItemStack transmogStack = TransmogUtils.getAppearanceItemStack(thisStack, true);
+            ItemStack appearanceStack = TransmogUtils.getAppearanceItemStack(thisStack, true);
             List<Component> validComponentsList;
-            if (transmogStack.is(ModItems.VOID_FRAGMENT.get())) {
+            if (TransmogUtils.isHiddenItem(appearanceStack)) {
                 validComponentsList = List.of(Component.translatable(TranslationKeys.TRANSMOG_HIDDEN).withStyle(ChatFormatting.LIGHT_PURPLE));
             } else {
-                validComponentsList = new ArrayList<>(transmogStack.getTooltipLines(player, tooltipFlag).stream().filter(ItemStackMixin::keepComponent).toList());
+                validComponentsList = new ArrayList<>(appearanceStack.getTooltipLines(player, tooltipFlag).stream().filter(ItemStackMixin::keepComponent).toList());
                 if (validComponentsList.get(validComponentsList.size() - 1).equals(CommonComponents.EMPTY)) {
                     validComponentsList.remove(validComponentsList.size() - 1);
                 }

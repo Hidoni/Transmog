@@ -1,6 +1,11 @@
 {
   "block.transmog.transmogrification_table": "Transmogrification Table",
   "item.transmog.void_fragment": "Void Fragment",
+  "transmog.config_option_show_transmogs": "Show Transmogs",
+  "transmog.config_option_show_transmogs.description": "Control whether transmogged appearances are shown. If this is OFF, the original appearance of transmogrified items will be shown.",
+  "transmog.config_option_show_transmogs_in_inventory": "Show Transmogs in Inventory",
+  "transmog.config_option_show_transmogs_in_inventory.description": "Control whether transmogged appearances are shown in the inventory and hotbar. If this is ON, Transmogrified items will look like what they're transmogrified to in the inventory too (Hidden items will still show up as themselves).",
+  "transmog.config_title": "Transmog",
   "transmog.creative_tab": "Transmog",
   "transmog.transmog_container": "Transmogrify",
   "transmog.transmog_description": "Transmogrified to:",
