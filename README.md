@@ -1,8 +1,11 @@
 # Transmog
+
 A Minecraft mod to solve the long-standing issue of not looking cool enough.  
 Transmog allows you to change the appearance of items without modifying their behavior at all!  
 It works on armor, weapons, tools and anything else you can imagine!  
-For more examples, look at the image/gallery tab on the mod page.
+
+![](https://i.imgur.com/woiAHnV.png) ![](https://i.imgur.com/emVdmtV.png) ![](https://i.imgur.com/5if3YW8.png)  
+**For more examples, look at the image/gallery tab on the mod page.**
 
 # Items & Blocks
 ## Void Fragment
