@@ -188,7 +188,7 @@ public class TransmogMenu extends AbstractContainerMenu {
     @NotNull
     public ItemStack createTransmoggedItem(ItemStack itemToTransmog) {
         ItemStack itemCopy = itemToTransmog.copyWithCount(1);
-        ItemStack appearanceItem = TransmogUtils.getAppearanceItemStack(this.getSlot(APPEARANCE_ITEM_SLOT).getItem(), true);
+        ItemStack appearanceItem = TransmogUtils.getAppearanceItemStack(this.getSlot(APPEARANCE_ITEM_SLOT).getItem(), true).copyWithCount(1);
         TransmogUtils.transmogAppearanceOntoItemStack(appearanceItem, itemCopy);
         return itemCopy;
     }
