@@ -18,5 +18,6 @@ public class ModLanguageProvider extends LanguageProvider {
         add(TranslationKeys.TRANSMOG_DESCRIPTION_PREFIX, "Transmogrified to:");
         add(TranslationKeys.TRANSMOG_HIDDEN, "Hidden Item");
         add(TranslationKeys.TRANSMOG_CONTAINER_TITLE, "Transmogrify");
+        add(TranslationKeys.TRANSMOG_CREATIVE_MODE_TAB_NAME, "Transmog");
     }
 }
