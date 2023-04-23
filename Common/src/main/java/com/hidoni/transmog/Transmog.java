@@ -16,8 +16,7 @@ public class Transmog {
         Path configPath = Config.getConfigPath();
         if (Files.exists(configPath)) {
             Config.loadConfigFromFile();
-        } else {
-            Config.writeConfigToFile();
         }
+        Config.writeConfigToFile();
     }
 }

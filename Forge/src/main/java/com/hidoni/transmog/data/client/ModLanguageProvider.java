@@ -20,9 +20,12 @@ public class ModLanguageProvider extends LanguageProvider {
         add(TranslationKeys.TRANSMOG_CONTAINER_TITLE, "Transmogrify");
         add(TranslationKeys.TRANSMOG_CREATIVE_MODE_TAB_NAME, "Transmog");
         add(TranslationKeys.TRANSMOG_CONFIG_TITLE, "Transmog");
-        add(TranslationKeys.TRANSMOG_CONFIG_OPTION_SHOW_TRANSMOGS, "Show Transmogs");
-        add(TranslationKeys.TRANSMOG_CONFIG_OPTION_SHOW_TRANSMOGS_DESCRIPTION, "Control whether transmogged appearances are shown. If this is OFF, the original appearance of transmogrified items will be shown.");
-        add(TranslationKeys.TRANSMOG_CONFIG_OPTION_SHOW_TRANSMOGS_IN_INVENTORY, "Show Transmogs in Inventory");
-        add(TranslationKeys.TRANSMOG_CONFIG_OPTION_SHOW_TRANSMOGS_IN_INVENTORY_DESCRIPTION, "Control whether transmogged appearances are shown in the inventory and hotbar. If this is ON, Transmogrified items will look like what they're transmogrified to in the inventory too (Hidden items will still show up as themselves).");
+        add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTIONS, "Render Transmogs");
+        add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_OFF, "OFF");
+        add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_OFF_CAPTION, "Don't render transmogs in world or inventory, this effectively disables the mod on your client, only keeping tooltips in the inventory.");
+        add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_IN_WORLD, "In World");
+        add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_IN_WORLD_CAPTION, "Render transmogs in world only. Items in inventories and the hotbar will look like the original item and only show their transmogrified appearance when held, equipped or otherwise rendered in the world. This is the default option.");
+        add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_EVERYWHERE, "In World & Inventory");
+        add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_EVERYWHERE_CAPTION, "Render transmogs in world, inventories and the hotbar. Items will look like the item they're transmogrified as even in your inventory (Hidden items will still show up as the original item in the inventory). This might get confusing!");
     }
 }

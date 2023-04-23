@@ -11,8 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Config {
-    public static boolean showTransmogs = true;
-    public static boolean showTransmogsInInventory = false;
+    public static TransmogRenderOption renderOption = TransmogRenderOption.IN_WORLD;
     @SuppressWarnings("UnnecessaryModifier")
     private transient static final Gson GSON = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT).serializeNulls().serializeSpecialFloatingPointValues().setPrettyPrinting().setLenient().create();
 

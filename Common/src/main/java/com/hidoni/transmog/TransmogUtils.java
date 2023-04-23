@@ -36,11 +36,11 @@ public class TransmogUtils {
     }
 
     public static ItemStack getAppearanceStackOrOriginal(ItemStack itemStack) {
-        if (Config.showTransmogs && isItemStackTransmogged(itemStack)) {
+        if (Config.renderOption.renderInWorld && isItemStackTransmogged(itemStack)) {
             if (!RenderUtils.isCalledForInventory()) {
                 return getAppearanceItemStack(itemStack, false);
             }
-            else if (Config.showTransmogsInInventory) {
+            else if (Config.renderOption.renderInInventory) {
                 ItemStack appearanceItemStack = getAppearanceItemStack(itemStack, true);
                 if (isHiddenItem(appearanceItemStack)) {
                     return itemStack;

@@ -1,19 +1,23 @@
 package com.hidoni.transmog.gui;
 
 import com.hidoni.transmog.config.Config;
+import com.hidoni.transmog.config.TransmogRenderOption;
 import com.hidoni.transmog.i18n.TranslationKeys;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.serialization.Codec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.OptionsList;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.OptionsSubScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class ConfigScreen extends OptionsSubScreen {
@@ -50,27 +54,19 @@ public class ConfigScreen extends OptionsSubScreen {
     }
 
     private void addConfigOptionsToList() {
-        this.list.addBig(OptionInstance.createBoolean(
-                TranslationKeys.TRANSMOG_CONFIG_OPTION_SHOW_TRANSMOGS,
-                getTooltip(TranslationKeys.TRANSMOG_CONFIG_OPTION_SHOW_TRANSMOGS_DESCRIPTION),
-                Config.showTransmogs,
-                value -> Config.showTransmogs = value
-        ));
-        this.list.addBig(OptionInstance.createBoolean(
-                TranslationKeys.TRANSMOG_CONFIG_OPTION_SHOW_TRANSMOGS_IN_INVENTORY,
-                getTooltip(TranslationKeys.TRANSMOG_CONFIG_OPTION_SHOW_TRANSMOGS_IN_INVENTORY_DESCRIPTION),
-                Config.showTransmogsInInventory,
-                value -> Config.showTransmogsInInventory = value
-        ));
-    }
-
-    private OptionInstance.TooltipSupplier<Boolean> getTooltip(String translationKey) {
-        Component tooltipComponent = Component.translatable(translationKey);
-        String comment = tooltipComponent.getString(Integer.MAX_VALUE);
-        if (comment.equals(translationKey)) {
-            return OptionInstance.noTooltip();
-        }
-        return OptionInstance.cachedConstantTooltip(tooltipComponent);
+        this.list.addBig(new OptionInstance<>(
+                        TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTIONS,
+                        (option) -> Tooltip.create(Component.translatable(option.getTooltipKey())),
+                        OptionInstance.forOptionEnum(),
+                        new OptionInstance.Enum<>(Arrays.asList(TransmogRenderOption.values()),
+                                Codec.INT.xmap(
+                                        TransmogRenderOption::fromId,
+                                        TransmogRenderOption::getId)
+                        ),
+                        Config.renderOption,
+                        (option) -> Config.renderOption = option
+                )
+        );
     }
 
     @Override
