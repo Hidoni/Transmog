@@ -111,6 +111,7 @@ curseforge {
         addArtifact(sourcesJar)
         relations {
             requiredDependency("qsl")
+            optionalDependency("modmenu")
         }
 
         afterEvaluate {
@@ -135,5 +136,6 @@ modrinth {
     loaders = ["quilt"]
     dependencies {
         required.project "qsl"
+        optional.project "modmenu"
     }
 }

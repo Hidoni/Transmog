@@ -110,6 +110,7 @@ curseforge {
         addArtifact(sourcesJar)
         relations {
             requiredDependency("fabric-api")
+            optionalDependency("modmenu")
         }
 
         afterEvaluate {
@@ -134,5 +135,6 @@ modrinth {
     loaders = ["fabric"]
     dependencies {
         required.project "fabric-api"
+        optional.project "modmenu"
     }
 }
