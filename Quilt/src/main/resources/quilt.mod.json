@@ -7,9 +7,10 @@
     "metadata": {
       "name": "Transmog",
       "description": "Change the appearance of your items without modifying their behavior/stats!",
-      "authors": [
-        "Hidoni"
-      ],
+      "contributors": {
+        "Hidoni": "Owner",
+        "Junshengxie": "Chinese Translation"
+      },
       "contact": {
         "sources": "https://github.com/Hidoni/Transmog"
       },

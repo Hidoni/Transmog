@@ -30,6 +30,9 @@ displayName="Transmog" #mandatory
 logoFile="icon.png" #optional
 # A text field displayed in the mod UI
 authors="Hidoni" #optional
+credits='''
+Junshengxie - Chinese Translation
+'''
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 Change the appearance of your items without modifying their behavior/stats!
