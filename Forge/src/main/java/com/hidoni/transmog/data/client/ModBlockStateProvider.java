@@ -52,7 +52,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("side", modLoc("block/transmogrification_table_side"))
                 .texture("top", modLoc("block/transmogrification_table_top"))
                 .texture("particle", modLoc("block/transmogrification_table_side"))
-                .renderType("cutout")
         ).build()));
     }
 

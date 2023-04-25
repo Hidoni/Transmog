@@ -1,6 +1,7 @@
 package com.hidoni.transmog.platform;
 
 import com.hidoni.transmog.platform.services.IPrivateInterfaceAccessor;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -16,8 +17,8 @@ public class FabricPrivateInterfaceAccessor implements IPrivateInterfaceAccessor
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityType.Builder<T> createBlockEntityTypeBuilder(BlockEntitySupplier<T> blockEntitySupplier, Block... validBlocks) {
-        return BlockEntityType.Builder.of(blockEntitySupplier::create, validBlocks);
+    public <T extends BlockEntity> BlockEntityType<T> createBlockEntityTypeBuilder(BlockEntitySupplier<T> blockEntitySupplier, Block... validBlocks) {
+        return FabricBlockEntityTypeBuilder.create(blockEntitySupplier::create, validBlocks).build();
     }
 
     @Override

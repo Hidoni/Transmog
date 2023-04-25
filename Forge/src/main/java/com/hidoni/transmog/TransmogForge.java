@@ -5,6 +5,7 @@ import com.hidoni.transmog.item.VoidFragmentItem;
 import com.hidoni.transmog.registry.ModItemGroups;
 import com.hidoni.transmog.registry.ModItems;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -34,7 +35,7 @@ public class TransmogForge {
 
             @Override
             public @NotNull Component getDisplayName() {
-                return Component.translatable(TranslationKeys.TRANSMOG_CREATIVE_MODE_TAB_NAME);
+                return new TranslatableComponent(TranslationKeys.TRANSMOG_CREATIVE_MODE_TAB_NAME);
             }
         };
     }

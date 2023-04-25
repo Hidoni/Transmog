@@ -3,10 +3,9 @@ package com.hidoni.transmog.mixin;
 import com.hidoni.transmog.TransmogUtils;
 import com.hidoni.transmog.i18n.TranslationKeys;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -29,33 +28,31 @@ public class ItemStackMixin {
             ItemStack appearanceStack = TransmogUtils.getAppearanceItemStack(thisStack, true);
             List<Component> validComponentsList;
             if (TransmogUtils.isHiddenItem(appearanceStack)) {
-                validComponentsList = List.of(Component.translatable(TranslationKeys.TRANSMOG_HIDDEN).withStyle(ChatFormatting.LIGHT_PURPLE));
+                validComponentsList = List.of(new TranslatableComponent(TranslationKeys.TRANSMOG_HIDDEN).withStyle(ChatFormatting.LIGHT_PURPLE));
             } else {
                 validComponentsList = new ArrayList<>(appearanceStack.getTooltipLines(player, tooltipFlag).stream().filter(ItemStackMixin::keepComponent).toList());
-                if (validComponentsList.get(validComponentsList.size() - 1).equals(CommonComponents.EMPTY)) {
+                if (validComponentsList.get(validComponentsList.size() - 1).equals(TextComponent.EMPTY)) {
                     validComponentsList.remove(validComponentsList.size() - 1);
                 }
             }
             List<Component> originalItemLines = cir.getReturnValue();
-            originalItemLines.add(Component.translatable(TranslationKeys.TRANSMOG_DESCRIPTION_PREFIX).withStyle(ChatFormatting.LIGHT_PURPLE));
+            originalItemLines.add(new TranslatableComponent(TranslationKeys.TRANSMOG_DESCRIPTION_PREFIX).withStyle(ChatFormatting.LIGHT_PURPLE));
             originalItemLines.addAll(validComponentsList);
         }
     }
 
     private static boolean keepComponent(Component component) {
-        if (!(component instanceof MutableComponent mutableComponent)) {
+        if (!(component instanceof TranslatableComponent translatableComponent)) {
             return true;
         }
-        if (mutableComponent.getContents() instanceof TranslatableContents translatableContents) {
-            for (String translationKey : TRANSLATION_KEYS_TO_REMOVE) {
-                if (translationKey.endsWith("*") && translatableContents.getKey().startsWith(translationKey.replace("*", ""))) {
-                    return false;
-                } else if (translatableContents.getKey().equals(translationKey)) {
-                    return false;
-                }
+        for (String translationKey : TRANSLATION_KEYS_TO_REMOVE) {
+            if (translationKey.endsWith("*") && translatableComponent.getKey().startsWith(translationKey.replace("*", ""))) {
+                return false;
+            } else if (translatableComponent.getKey().equals(translationKey)) {
+                return false;
             }
         }
-        for (Component sibling : mutableComponent.getSiblings()) {
+        for (Component sibling : translatableComponent.getSiblings()) {
             if (!keepComponent(sibling)) {
                 return false;
             }

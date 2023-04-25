@@ -4,16 +4,15 @@ import com.hidoni.transmog.config.Config;
 import com.hidoni.transmog.config.TransmogRenderOption;
 import com.hidoni.transmog.i18n.TranslationKeys;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.serialization.Codec;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.CycleOption;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.OptionInstance;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.OptionsList;
 import net.minecraft.client.gui.screens.OptionsSubScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.FormattedCharSequence;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,7 +25,7 @@ public class ConfigScreen extends OptionsSubScreen {
     private OptionsList list;
 
     public ConfigScreen(Screen parentScreen) {
-        super(parentScreen, Minecraft.getInstance().options, Component.translatable(TranslationKeys.TRANSMOG_CONFIG_TITLE));
+        super(parentScreen, Minecraft.getInstance().options, new TranslatableComponent(TranslationKeys.TRANSMOG_CONFIG_TITLE));
         this.parentScreen = parentScreen;
     }
 
@@ -57,20 +56,15 @@ public class ConfigScreen extends OptionsSubScreen {
     }
 
     private void addConfigOptionsToList() {
-        this.list.addBig(new OptionInstance<>(
-                        TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTIONS,
-                        // Have to use mc.font.split directly because OptionInstance.splitTooltip is protected.
-                        (mc) -> (option) -> mc.font.split(Component.translatable(option.getTooltipKey()), 200),
-                        OptionInstance.forOptionEnum(),
-                        new OptionInstance.Enum<>(Arrays.asList(TransmogRenderOption.values()),
-                                Codec.INT.xmap(
-                                        TransmogRenderOption::fromId,
-                                        TransmogRenderOption::getId)
-                        ),
-                        Config.renderOption,
-                        (option) -> Config.renderOption = option
-                )
+        CycleOption<TransmogRenderOption> transmogRenderOptionCycleOption = CycleOption.create(
+                TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTIONS,
+                Arrays.asList(TransmogRenderOption.values()),
+                option -> new TranslatableComponent(option.getKey()),
+                (options) -> Config.renderOption,
+                (options, option, value) -> Config.renderOption = value
         );
+        transmogRenderOptionCycleOption.setTooltip((mc) -> (option) -> mc.font.split(new TranslatableComponent(option.getTooltipKey()), 200));
+        this.list.addBig(transmogRenderOptionCycleOption);
     }
 
     @Override

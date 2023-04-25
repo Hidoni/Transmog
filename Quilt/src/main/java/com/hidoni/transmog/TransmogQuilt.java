@@ -4,7 +4,7 @@ import com.hidoni.transmog.i18n.TranslationKeys;
 import com.hidoni.transmog.item.VoidFragmentItem;
 import com.hidoni.transmog.registry.ModItemGroups;
 import com.hidoni.transmog.registry.ModItems;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.quiltmc.loader.api.ModContainer;
@@ -20,7 +20,7 @@ public class TransmogQuilt implements ModInitializer {
                     itemStack.getOrCreateTag().putBoolean(VoidFragmentItem.VOID_FRAGMENT_SHOW_FOIL_KEY, false);
                     return itemStack;
                 })
-                .displayText(Component.translatable(TranslationKeys.TRANSMOG_CREATIVE_MODE_TAB_NAME))
+                .displayText(new TranslatableComponent(TranslationKeys.TRANSMOG_CREATIVE_MODE_TAB_NAME))
                 .build();
         Transmog.init();
     }

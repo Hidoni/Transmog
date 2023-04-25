@@ -7,6 +7,7 @@ import com.hidoni.transmog.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.Nameable;
 import net.minecraft.world.entity.player.Inventory;
@@ -86,7 +87,7 @@ public class TransmogrificationTableBlockEntity extends BlockEntity implements M
 
     @Override
     public @NotNull Component getName() {
-        return this.name != null ? this.name : Component.translatable(TranslationKeys.TRANSMOG_CONTAINER_TITLE);
+        return this.name != null ? this.name : new TranslatableComponent(TranslationKeys.TRANSMOG_CONTAINER_TITLE);
     }
 
     public void setCustomName(@Nullable Component component) {

@@ -1,32 +1,13 @@
 {
   "parent": "minecraft:block/block",
+  "textures": {
+    "bottom": "transmog:block/transmogrification_table_bottom",
+    "side": "transmog:block/transmogrification_table_side",
+    "top": "transmog:block/transmogrification_table_top",
+    "particle": "transmog:block/transmogrification_table_side"
+  },
   "elements": [
     {
-      "faces": {
-        "down": {
-          "cullface": "down",
-          "texture": "#bottom"
-        },
-        "east": {
-          "cullface": "east",
-          "texture": "#side"
-        },
-        "north": {
-          "cullface": "north",
-          "texture": "#side"
-        },
-        "south": {
-          "cullface": "south",
-          "texture": "#side"
-        },
-        "up": {
-          "texture": "#bottom"
-        },
-        "west": {
-          "cullface": "west",
-          "texture": "#side"
-        }
-      },
       "from": [
         0,
         0,
@@ -36,34 +17,34 @@
         16,
         8,
         16
-      ]
-    },
-    {
+      ],
       "faces": {
         "down": {
-          "cullface": "down",
-          "texture": "#top"
-        },
-        "east": {
-          "cullface": "east",
-          "texture": "#side"
-        },
-        "north": {
-          "cullface": "north",
-          "texture": "#side"
-        },
-        "south": {
-          "cullface": "south",
-          "texture": "#side"
+          "texture": "#bottom",
+          "cullface": "down"
         },
         "up": {
-          "texture": "#top"
+          "texture": "#bottom"
+        },
+        "north": {
+          "texture": "#side",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#side",
+          "cullface": "south"
         },
         "west": {
-          "cullface": "west",
-          "texture": "#side"
+          "texture": "#side",
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#side",
+          "cullface": "east"
         }
-      },
+      }
+    },
+    {
       "from": [
         0,
         8,
@@ -73,23 +54,34 @@
         16,
         12,
         16
-      ]
-    },
-    {
+      ],
       "faces": {
-        "east": {
-          "texture": "#side"
+        "down": {
+          "texture": "#top",
+          "cullface": "down"
+        },
+        "up": {
+          "texture": "#top"
         },
         "north": {
-          "texture": "#side"
+          "texture": "#side",
+          "cullface": "north"
         },
         "south": {
-          "texture": "#side"
+          "texture": "#side",
+          "cullface": "south"
         },
         "west": {
-          "texture": "#side"
+          "texture": "#side",
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#side",
+          "cullface": "east"
         }
-      },
+      }
+    },
+    {
       "from": [
         15,
         12,
@@ -99,14 +91,21 @@
         1,
         8,
         1
-      ]
+      ],
+      "faces": {
+        "north": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        }
+      }
     }
-  ],
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "bottom": "transmog:block/transmogrification_table_bottom",
-    "particle": "transmog:block/transmogrification_table_side",
-    "side": "transmog:block/transmogrification_table_side",
-    "top": "transmog:block/transmogrification_table_top"
-  }
+  ]
 }

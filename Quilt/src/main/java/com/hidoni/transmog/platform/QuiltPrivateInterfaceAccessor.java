@@ -16,8 +16,8 @@ public class QuiltPrivateInterfaceAccessor implements IPrivateInterfaceAccessor 
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityType.Builder<T> createBlockEntityTypeBuilder(BlockEntitySupplier<T> blockEntitySupplier, Block... validBlocks) {
-        return BlockEntityType.Builder.of(blockEntitySupplier::create, validBlocks);
+    public <T extends BlockEntity> BlockEntityType<T> createBlockEntityTypeBuilder(BlockEntitySupplier<T> blockEntitySupplier, Block... validBlocks) {
+        return BlockEntityType.Builder.of(blockEntitySupplier::create, validBlocks).build(null);
     }
 
     @Override

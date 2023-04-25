@@ -1,10 +1,9 @@
 package com.hidoni.transmog.config;
 
 import com.hidoni.transmog.i18n.TranslationKeys;
-import net.minecraft.util.OptionEnum;
 import org.jetbrains.annotations.NotNull;
 
-public enum TransmogRenderOption implements OptionEnum {
+public enum TransmogRenderOption {
     OFF(0, TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_OFF, false, false),
     IN_WORLD(1, TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_IN_WORLD, true, false),
     EVERYWHERE(2, TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_EVERYWHERE, true, true);
@@ -21,7 +20,6 @@ public enum TransmogRenderOption implements OptionEnum {
         this.renderInInventory = renderInInventory;
     }
 
-    @Override
     public int getId() {
         return this.id;
     }
@@ -34,7 +32,6 @@ public enum TransmogRenderOption implements OptionEnum {
         };
     }
 
-    @Override
     public @NotNull String getKey() {
         return this.translationKey;
     }

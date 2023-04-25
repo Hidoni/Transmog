@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public interface IPrivateInterfaceAccessor {
     <T extends AbstractContainerMenu> MenuType<T> createMenu(MenuSupplier<T> menuSupplier);
 
-    <T extends BlockEntity> BlockEntityType.Builder<T> createBlockEntityTypeBuilder(BlockEntitySupplier<T> blockEntitySupplier, Block... validBlocks);
+    <T extends BlockEntity> BlockEntityType<T> createBlockEntityTypeBuilder(BlockEntitySupplier<T> blockEntitySupplier, Block... validBlocks);
 
     SimpleParticleType createSimpleParticleType(boolean overrideLimiter);
 
