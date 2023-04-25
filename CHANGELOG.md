@@ -1,3 +1,6 @@
+# 1.2.0+1.19.4 - 25/04/2023
+- Add config options to control level of detail for an item's transmog tooltip
+
 # 1.1.1+1.19.4 - 24/04/2023
 - Add Simplified Chinese translation (Provided by [Junshengxie](https://curseforge.com/members/junshengxie/projects) on CurseForge) 
 
