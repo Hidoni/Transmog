@@ -5,7 +5,6 @@ import com.hidoni.transmog.registry.RegistryEntry;
 import com.hidoni.transmog.registry.RegistryProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
@@ -16,7 +15,7 @@ public class FabricRegistryHelper implements IRegistryHelper {
     @SuppressWarnings("unchecked")
     @Override
     public <T> RegistryProvider<T> getRegistry(ResourceKey<? extends Registry<T>> resourceKey) {
-        Registry<T> registry = (Registry<T>) BuiltInRegistries.REGISTRY.get(resourceKey.location());
+        Registry<T> registry = (Registry<T>) Registry.REGISTRY.get(resourceKey.location());
         if (registry == null) {
             throw new RuntimeException("Registry " + resourceKey + " not found!");
         }

@@ -125,7 +125,7 @@ public class TransmogMenu extends AbstractContainerMenu {
             }
         }
         if (item.isEmpty()) {
-            slot.setByPlayer(ItemStack.EMPTY);
+            slot.set(ItemStack.EMPTY);
         }
         slot.setChanged();
         if (item.getCount() == returnStack.getCount()) {
@@ -168,14 +168,16 @@ public class TransmogMenu extends AbstractContainerMenu {
     }
 
     private void outputRemovedTransmog() {
-        ItemStack item = this.getSlot(ITEM_TO_TRANSMOG_SLOT).getItem().copyWithCount(1);
+        ItemStack item = this.getSlot(ITEM_TO_TRANSMOG_SLOT).getItem().copy();
+        item.setCount(1);
         item.removeTagKey(Constants.TRANSMOG_ITEM_TAG);
         this.resultContainer.setItem(OUTPUT_SLOT, item);
         this.broadcastChanges();
     }
 
     private void outputTransmoggedItem() {
-        ItemStack originalItemToTransmog = this.getSlot(ITEM_TO_TRANSMOG_SLOT).getItem().copyWithCount(1);
+        ItemStack originalItemToTransmog = this.getSlot(ITEM_TO_TRANSMOG_SLOT).getItem().copy();
+        originalItemToTransmog.setCount(1);
         ItemStack itemToTransmog = createTransmoggedItem(originalItemToTransmog);
         if (ItemStack.matches(itemToTransmog, originalItemToTransmog)) {
             this.resultContainer.removeItemNoUpdate(OUTPUT_SLOT);
@@ -187,8 +189,10 @@ public class TransmogMenu extends AbstractContainerMenu {
 
     @NotNull
     public ItemStack createTransmoggedItem(ItemStack itemToTransmog) {
-        ItemStack itemCopy = itemToTransmog.copyWithCount(1);
-        ItemStack appearanceItem = TransmogUtils.getAppearanceItemStack(this.getSlot(APPEARANCE_ITEM_SLOT).getItem(), true).copyWithCount(1);
+        ItemStack itemCopy = itemToTransmog.copy();
+        itemCopy.setCount(1);
+        ItemStack appearanceItem = TransmogUtils.getAppearanceItemStack(this.getSlot(APPEARANCE_ITEM_SLOT).getItem(), true).copy();
+        appearanceItem.setCount(1);
         TransmogUtils.transmogAppearanceOntoItemStack(appearanceItem, itemCopy);
         return itemCopy;
     }

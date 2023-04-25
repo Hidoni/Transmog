@@ -19,22 +19,22 @@ public class ItemRendererMixin {
         return TransmogUtils.getAppearanceStackOrOriginal(stack);
     }
 
-    @ModifyVariable(method = "renderStatic(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/level/Level;III)V", at=@At("HEAD"), argsOnly = true)
+    @ModifyVariable(method = "renderStatic(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/renderer/block/model/ItemTransforms$TransformType;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/level/Level;III)V", at=@At("HEAD"), argsOnly = true)
     private ItemStack transmog$renderStatic(ItemStack stack) {
         return TransmogUtils.getAppearanceStackOrOriginal(stack);
     }
 
-    @ModifyVariable(method = "renderGuiItem(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/ItemStack;IILnet/minecraft/client/resources/model/BakedModel;)V", at=@At("HEAD"), argsOnly = true)
+    @ModifyVariable(method = "renderGuiItem(Lnet/minecraft/world/item/ItemStack;IILnet/minecraft/client/resources/model/BakedModel;)V", at=@At("HEAD"), argsOnly = true)
     private ItemStack transmog$renderGuiItem(ItemStack stack) {
         return TransmogUtils.getAppearanceStackOrOriginal(stack);
     }
 
-    @ModifyVariable(method = "tryRenderGuiItem(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;IIII)V", at=@At("HEAD"), argsOnly = true)
+    @ModifyVariable(method = "tryRenderGuiItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;IIII)V", at=@At("HEAD"), argsOnly = true)
     private ItemStack transmog$tryRenderGuiItem(ItemStack stack) {
         return TransmogUtils.getAppearanceStackOrOriginal(stack);
     }
 
-    @ModifyVariable(method = "renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V", at=@At("HEAD"), argsOnly = true)
+    @ModifyVariable(method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V", at=@At("HEAD"), argsOnly = true)
     private ItemStack transmog$renderGuiItemDecorations(ItemStack stack) {
         return TransmogUtils.getAppearanceStackOrOriginal(stack);
     }

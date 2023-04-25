@@ -1,6 +1,7 @@
 {
   "block.transmog.transmogrification_table": "Transmogrification Table",
   "item.transmog.void_fragment": "Void Fragment",
+  "itemGroup.transmog.creative_tab": "Transmog",
   "transmog.config.render": "Render Transmogs",
   "transmog.config.render.everywhere": "In World & Inventory",
   "transmog.config.render.everywhere.tooltip": "Render transmogs in world, inventories and the hotbar. Items will look like the item they're transmogrified as even in your inventory (Hidden items will still show up as the original item in the inventory). This might get confusing!",

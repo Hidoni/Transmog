@@ -21,7 +21,7 @@ public class ModBlocks {
 
     private static <T extends Block> RegistryEntry<T> registerWithItem(ResourceLocation location, Supplier<T> blockSupplier) {
         RegistryEntry<T> block = ModRegistries.BLOCKS.register(location, blockSupplier);
-        ModRegistries.ITEM.register(location, () -> new BlockItem(block.get(), new Item.Properties()));
+        ModRegistries.ITEM.register(location, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemGroups.TRANSMOG_CREATIVE_TAB)));
         return block;
     }
 }

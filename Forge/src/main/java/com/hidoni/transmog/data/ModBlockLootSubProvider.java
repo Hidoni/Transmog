@@ -1,21 +1,16 @@
 package com.hidoni.transmog.data;
 
 import com.hidoni.transmog.registry.ModBlocks;
-import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
-public class ModBlockLootSubProvider extends BlockLootSubProvider {
-    protected ModBlockLootSubProvider() {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
-    }
-
+public class ModBlockLootSubProvider extends BlockLoot {
     @Override
-    protected void generate() {
-        this.add(ModBlocks.TRANSMOGRIFICATION_TABLE.get(), this::createNameableBlockEntityTable);
+    protected void addTables() {
+        this.add(ModBlocks.TRANSMOGRIFICATION_TABLE.get(), BlockLoot::createNameableBlockEntityTable);
     }
 
     @Override

@@ -2,14 +2,14 @@ package com.hidoni.transmog.data.client;
 
 import com.hidoni.transmog.registry.ModBlocks;
 import com.hidoni.transmog.registry.ModItems;
-import net.minecraft.data.PackOutput;
+import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModItemModelProvider extends ItemModelProvider {
-    public ModItemModelProvider(PackOutput output, String modid, ExistingFileHelper existingFileHelper) {
-        super(output, modid, existingFileHelper);
+    public ModItemModelProvider(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
+        super(generator, modid, existingFileHelper);
     }
 
     @Override

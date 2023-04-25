@@ -10,14 +10,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.OptionsList;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.OptionsSubScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class ConfigScreen extends OptionsSubScreen {
@@ -35,6 +36,8 @@ public class ConfigScreen extends OptionsSubScreen {
         this.list.render(poseStack, mouseX, mouseY, partialTick);
         drawCenteredString(poseStack, this.font, this.title, this.width / 2, 8, ChatFormatting.WHITE.getColor());
         super.render(poseStack, mouseX, mouseY, partialTick);
+        List<FormattedCharSequence> list = tooltipAt(this.list, mouseX, mouseY);
+        this.renderTooltip(poseStack, list, mouseX, mouseY);
     }
 
     @Override
@@ -43,20 +46,21 @@ public class ConfigScreen extends OptionsSubScreen {
         this.list = new OptionsList(minecraft, this.width, this.height, 32, this.height - 32, 25);
         this.addConfigOptionsToList();
         this.addWidget(this.list);
-        this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, (button) -> {
+        this.addRenderableWidget(new Button(this.width / 2 - 154, this.height - 28, 150, 20, CommonComponents.GUI_DONE, (button -> {
             Config.writeConfigToFile();
             Objects.requireNonNullElseGet(this.minecraft, Minecraft::getInstance).setScreen(this.parentScreen);
-        }).bounds(this.width / 2 - 154, this.height - 28, 150, 20).build());
-        this.addRenderableWidget(Button.builder(CommonComponents.GUI_CANCEL, (button) -> {
+        })));
+        this.addRenderableWidget(new Button(this.width / 2 + 4, this.height - 28, 150, 20, CommonComponents.GUI_CANCEL, (button -> {
             this.removed();
             Objects.requireNonNullElseGet(this.minecraft, Minecraft::getInstance).setScreen(this.parentScreen);
-        }).bounds(this.width / 2 + 4, this.height - 28, 150, 20).build());
+        })));
     }
 
     private void addConfigOptionsToList() {
         this.list.addBig(new OptionInstance<>(
                         TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTIONS,
-                        (option) -> Tooltip.create(Component.translatable(option.getTooltipKey())),
+                        // Have to use mc.font.split directly because OptionInstance.splitTooltip is protected.
+                        (mc) -> (option) -> mc.font.split(Component.translatable(option.getTooltipKey()), 200),
                         OptionInstance.forOptionEnum(),
                         new OptionInstance.Enum<>(Arrays.asList(TransmogRenderOption.values()),
                                 Codec.INT.xmap(

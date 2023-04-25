@@ -19,12 +19,12 @@ public class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
-        generator.addProvider(true, new ModBlockStateProvider(generator.getPackOutput(), Constants.MOD_ID, event.getExistingFileHelper()));
-        generator.addProvider(true, new ModItemModelProvider(generator.getPackOutput(), Constants.MOD_ID, event.getExistingFileHelper()));
-        generator.addProvider(true, new ModLanguageProvider(generator.getPackOutput(), Constants.MOD_ID));
-        generator.addProvider(true, new ModRecipeProvider(generator.getPackOutput()));
-        generator.addProvider(true, new ModBlockTagsProvider(generator.getPackOutput(), event.getLookupProvider(), Constants.MOD_ID, event.getExistingFileHelper()));
-        generator.addProvider(true, new ModLootTableProvider(generator.getPackOutput()));
+        generator.addProvider(true, new ModBlockStateProvider(generator, Constants.MOD_ID, event.getExistingFileHelper()));
+        generator.addProvider(true, new ModItemModelProvider(generator, Constants.MOD_ID, event.getExistingFileHelper()));
+        generator.addProvider(true, new ModLanguageProvider(generator, Constants.MOD_ID));
+        generator.addProvider(true, new ModRecipeProvider(generator));
+        generator.addProvider(true, new ModBlockTagsProvider(generator, Constants.MOD_ID, event.getExistingFileHelper()));
+        generator.addProvider(true, new ModLootTableProvider(generator));
     }
 }
 

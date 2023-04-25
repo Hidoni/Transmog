@@ -2,14 +2,14 @@ package com.hidoni.transmog.data.client;
 
 import com.hidoni.transmog.registry.ModBlocks;
 import net.minecraft.core.Direction;
-import net.minecraft.data.PackOutput;
+import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModBlockStateProvider extends BlockStateProvider {
-    public ModBlockStateProvider(PackOutput output, String modid, ExistingFileHelper exFileHelper) {
-        super(output, modid, exFileHelper);
+    public ModBlockStateProvider(DataGenerator generator, String modid, ExistingFileHelper exFileHelper) {
+        super(generator, modid, exFileHelper);
     }
 
     @Override

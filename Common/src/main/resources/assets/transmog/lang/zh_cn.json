@@ -10,6 +10,7 @@
   "transmog.config.render.off.tooltip": "禁止世界或背包渲染幻化，仅保留背包里的幻化物品提示",
   "transmog.config_title": "幻化",
   "transmog.creative_tab": "幻化多端",
+  "itemGroup.transmog.creative_tab": "幻化多端",
   "transmog.transmog_container": "幻化台",
   "transmog.transmog_description": "幻化为：",
   "transmog.transmog_hidden": "隐藏物品"

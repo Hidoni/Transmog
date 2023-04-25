@@ -3,7 +3,6 @@ package com.hidoni.transmog.platform.services;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.Block;
@@ -16,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
  * Every single modloader makes these public, but not vanilla, so this is required...
  */
 public interface IPrivateInterfaceAccessor {
-    <T extends AbstractContainerMenu> MenuType<T> createMenu(MenuSupplier<T> menuSupplier, FeatureFlagSet featureFlagSet);
+    <T extends AbstractContainerMenu> MenuType<T> createMenu(MenuSupplier<T> menuSupplier);
 
     <T extends BlockEntity> BlockEntityType.Builder<T> createBlockEntityTypeBuilder(BlockEntitySupplier<T> blockEntitySupplier, Block... validBlocks);
 

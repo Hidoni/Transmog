@@ -1,10 +1,2 @@
-# 1.1.1+1.19.4 - 24/04/2023
-- Add Simplified Chinese translation (Provided by [Junshengxie](https://curseforge.com/members/junshengxie/projects) on CurseForge) 
-
-# 1.1.0+1.19.4 - 24/04/2023
-- Added Creative Mode Tab for Void Fragment & Transmogrification Table
-- Add config options to not render transmogged appearance or show transmogged appearance in inventory
-- Fix issue with transmogged appearance item potentially being stacked
-
-# 1.0.0+1.19.4 - 23/04/2023
-- Initial Release
+# 1.1.1+1.19.2 - 25/04/2023
+- Backport to 1.19.2

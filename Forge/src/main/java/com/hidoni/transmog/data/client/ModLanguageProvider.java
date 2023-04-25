@@ -3,12 +3,12 @@ package com.hidoni.transmog.data.client;
 import com.hidoni.transmog.i18n.TranslationKeys;
 import com.hidoni.transmog.registry.ModBlocks;
 import com.hidoni.transmog.registry.ModItems;
-import net.minecraft.data.PackOutput;
+import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 
 public class ModLanguageProvider extends LanguageProvider {
-    public ModLanguageProvider(PackOutput output, String modid) {
-        super(output, modid, "en_us");
+    public ModLanguageProvider(DataGenerator generator, String modid) {
+        super(generator, modid, "en_us");
     }
 
     @Override
@@ -19,6 +19,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(TranslationKeys.TRANSMOG_HIDDEN, "Hidden Item");
         add(TranslationKeys.TRANSMOG_CONTAINER_TITLE, "Transmogrify");
         add(TranslationKeys.TRANSMOG_CREATIVE_MODE_TAB_NAME, "Transmog");
+        add("itemGroup." + TranslationKeys.TRANSMOG_CREATIVE_MODE_TAB_NAME, "Transmog"); // 1.19.2 Backport: Fabric does not let us override the item group tab name!
         add(TranslationKeys.TRANSMOG_CONFIG_TITLE, "Transmog");
         add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTIONS, "Render Transmogs");
         add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_OFF, "OFF");

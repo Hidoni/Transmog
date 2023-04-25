@@ -40,7 +40,8 @@ public class TransmogScreen extends AbstractContainerScreen<TransmogMenu> {
             blit(poseStack, x + 12, y + 38, 176, 0, 14, (int) Math.floor(21 * (this.menu.getFuel() / (float) Constants.TRANSMOG_FUEL_FROM_SHARD)));
         }
         if (this.menu.getSlot(TransmogMenu.ITEM_TO_TRANSMOG_SLOT).hasItem() && this.menu.getSlot(TransmogMenu.APPEARANCE_ITEM_SLOT).hasItem() && this.menu.hasFuel()) {
-            ItemStack item = this.menu.getSlot(TransmogMenu.ITEM_TO_TRANSMOG_SLOT).getItem().copyWithCount(1);
+            ItemStack item = this.menu.getSlot(TransmogMenu.ITEM_TO_TRANSMOG_SLOT).getItem().copy();
+            item.setCount(1);
             ItemStack transmoggedItem = this.menu.createTransmoggedItem(item);
             if (ItemStack.matches(transmoggedItem, item)) {
                 blit(poseStack, x + 110, y + 39, 176, 21, 28, 21);

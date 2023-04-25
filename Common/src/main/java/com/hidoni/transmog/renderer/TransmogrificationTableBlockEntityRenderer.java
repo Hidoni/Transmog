@@ -5,15 +5,15 @@ import com.hidoni.transmog.block.entity.TransmogrificationTableBlockEntity;
 import com.hidoni.transmog.item.VoidFragmentItem;
 import com.hidoni.transmog.registry.ModItems;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.Mth;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,9 +37,9 @@ public class TransmogrificationTableBlockEntityRenderer implements BlockEntityRe
 
         float deltaRotation = MathUtils.angleWithinBounds(blockEntity.rotation - blockEntity.oldRotation);
         float rotation = blockEntity.oldRotation + deltaRotation * partialTick;
-        poseStack.mulPose(Axis.YP.rotation(-rotation));
+        poseStack.mulPose(Vector3f.YP.rotation(-rotation));
 
-        itemRenderer.renderStatic(stack, ItemDisplayContext.NONE, packedLight, OverlayTexture.NO_OVERLAY, poseStack, bufferSource, blockEntity.getLevel(), 0);
+        itemRenderer.renderStatic(null, stack, ItemTransforms.TransformType.NONE, false, poseStack, bufferSource, blockEntity.getLevel(), packedLight, OverlayTexture.NO_OVERLAY, 0);
         poseStack.popPose();
     }
 }
