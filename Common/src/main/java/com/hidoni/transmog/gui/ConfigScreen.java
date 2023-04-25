@@ -1,6 +1,7 @@
 package com.hidoni.transmog.gui;
 
 import com.hidoni.transmog.config.Config;
+import com.hidoni.transmog.config.TooltipDetailLevel;
 import com.hidoni.transmog.config.TransmogRenderOption;
 import com.hidoni.transmog.i18n.TranslationKeys;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -65,6 +66,19 @@ public class ConfigScreen extends OptionsSubScreen {
                         ),
                         Config.renderOption,
                         (option) -> Config.renderOption = option
+                )
+        );
+        this.list.addBig(new OptionInstance<>(
+                        TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTIONS,
+                        (option) -> Tooltip.create(Component.translatable(option.getTooltipKey())),
+                        OptionInstance.forOptionEnum(),
+                        new OptionInstance.Enum<>(Arrays.asList(TooltipDetailLevel.values()),
+                                Codec.INT.xmap(
+                                        TooltipDetailLevel::fromId,
+                                        TooltipDetailLevel::getId)
+                        ),
+                        Config.tooltipDetailLevel,
+                        (option) -> Config.tooltipDetailLevel = option
                 )
         );
     }

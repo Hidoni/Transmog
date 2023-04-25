@@ -27,5 +27,12 @@ public class ModLanguageProvider extends LanguageProvider {
         add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_IN_WORLD_CAPTION, "Render transmogs in world only. Items in inventories and the hotbar will look like the original item and only show their transmogrified appearance when held, equipped or otherwise rendered in the world. This is the default option.");
         add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_EVERYWHERE, "In World & Inventory");
         add(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_EVERYWHERE_CAPTION, "Render transmogs in world, inventories and the hotbar. Items will look like the item they're transmogrified as even in your inventory (Hidden items will still show up as the original item in the inventory). This might get confusing!");
+        add(TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTIONS, "Tooltip Detail Level");
+        add(TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_NONE, "None");
+        add(TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_NONE_CAPTION, "Don't add any info about an item being transmogrified to its tooltip at all.");
+        add(TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_MINIMAL, "Minimal");
+        add(TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_MINIMAL_CAPTION, "Add the name of the appearance item that an item is transmogrified into to its tooltip.");
+        add(TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL, "Full");
+        add(TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL_CAPTION, "Add the original tooltip of the appearance item that an item is transmogrified into to its tooltip. This is the default option.");
     }
 }
