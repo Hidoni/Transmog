@@ -12,6 +12,7 @@ import java.nio.file.Path;
 
 public class Config {
     public static TransmogRenderOption renderOption = TransmogRenderOption.IN_WORLD;
+    public static TooltipDetailLevel tooltipDetailLevel = TooltipDetailLevel.FULL;
     @SuppressWarnings("UnnecessaryModifier")
     private transient static final Gson GSON = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT).serializeNulls().serializeSpecialFloatingPointValues().setPrettyPrinting().setLenient().create();
 
