@@ -13,4 +13,11 @@ public class TranslationKeys {
     public static final String TRANSMOG_CONFIG_RENDER_OPTION_IN_WORLD_CAPTION = "transmog.config.render.in_world.tooltip";
     public static final String TRANSMOG_CONFIG_RENDER_OPTION_EVERYWHERE = "transmog.config.render.everywhere";
     public static final String TRANSMOG_CONFIG_RENDER_OPTION_EVERYWHERE_CAPTION = "transmog.config.render.everywhere.tooltip";
+    public static final String TRANSMOG_CONFIG_TOOLTIP_OPTIONS = "transmog.config.tooltip";
+    public static final String TRANSMOG_CONFIG_TOOLTIP_OPTION_NONE = "transmog.config.tooltip.none";
+    public static final String TRANSMOG_CONFIG_TOOLTIP_OPTION_NONE_CAPTION = "transmog.config.tooltip.none.tooltip";
+    public static final String TRANSMOG_CONFIG_TOOLTIP_OPTION_MINIMAL = "transmog.config.tooltip.minimal";
+    public static final String TRANSMOG_CONFIG_TOOLTIP_OPTION_MINIMAL_CAPTION = "transmog.config.tooltip.minimal.tooltip";
+    public static final String TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL = "transmog.config.tooltip.full";
+    public static final String TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL_CAPTION = "transmog.config.tooltip.full.tooltip";
 }

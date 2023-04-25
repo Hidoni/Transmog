@@ -1,6 +1,7 @@
 package com.hidoni.transmog.gui;
 
 import com.hidoni.transmog.config.Config;
+import com.hidoni.transmog.config.TooltipDetailLevel;
 import com.hidoni.transmog.config.TransmogRenderOption;
 import com.hidoni.transmog.i18n.TranslationKeys;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -63,8 +64,17 @@ public class ConfigScreen extends OptionsSubScreen {
                 (options) -> Config.renderOption,
                 (options, option, value) -> Config.renderOption = value
         );
+        CycleOption<TooltipDetailLevel> tooltipDetailLevelCycleOption = CycleOption.create(
+                TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTIONS,
+                Arrays.asList(TooltipDetailLevel.values()),
+                option -> new TranslatableComponent(option.getKey()),
+                (options) -> Config.tooltipDetailLevel,
+                (options, option, value) -> Config.tooltipDetailLevel = value
+        );
         transmogRenderOptionCycleOption.setTooltip((mc) -> (option) -> mc.font.split(new TranslatableComponent(option.getTooltipKey()), 200));
+        tooltipDetailLevelCycleOption.setTooltip((mc) -> (option) -> mc.font.split(new TranslatableComponent(option.getTooltipKey()), 200));
         this.list.addBig(transmogRenderOptionCycleOption);
+        this.list.addBig(tooltipDetailLevelCycleOption);
     }
 
     @Override
