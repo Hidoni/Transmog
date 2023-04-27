@@ -14,8 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ArmorStandMixin {
     @Inject(method = "getItemBySlot", at=@At("RETURN"), cancellable = true)
     private void transmogItemBySlot(EquipmentSlot slot, CallbackInfoReturnable<ItemStack> cir) {
-        if (RenderUtils.isCalledForRendering()) {
-            cir.setReturnValue(TransmogUtils.getAppearanceStackOrOriginal(cir.getReturnValue()));
+        ItemStack returnValue = cir.getReturnValue();
+        if (TransmogUtils.isItemStackTransmogged(returnValue) && RenderUtils.INSTANCE.isCalledForRendering()) {
+            cir.setReturnValue(TransmogUtils.getAppearanceStackOrOriginal(returnValue));
         }
     }
 }
