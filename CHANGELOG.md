@@ -1,3 +1,6 @@
+# 1.2.1+1.19.4 - 28/04/2023
+- Significant Performance Optimizations
+
 # 1.2.0+1.19.4 - 25/04/2023
 - Add config options to control level of detail for an item's transmog tooltip
 
