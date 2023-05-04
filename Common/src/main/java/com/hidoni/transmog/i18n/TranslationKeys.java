@@ -20,4 +20,7 @@ public class TranslationKeys {
     public static final String TRANSMOG_CONFIG_TOOLTIP_OPTION_MINIMAL_CAPTION = "transmog.config.tooltip.minimal.tooltip";
     public static final String TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL = "transmog.config.tooltip.full";
     public static final String TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL_CAPTION = "transmog.config.tooltip.full.tooltip";
+    public static final String TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_OPTION = "transmog.config.disable_during_pvp_duration";
+    public static final String TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_TOOLTIP = "transmog.config.disable_during_pvp_duration.tooltip";
+    public static final String TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_VALUE_LABEL = "transmog.config.disable_during_pvp_duration.label";
 }

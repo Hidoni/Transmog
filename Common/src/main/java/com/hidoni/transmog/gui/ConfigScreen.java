@@ -8,6 +8,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.CycleOption;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.ProgressOption;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.OptionsList;
 import net.minecraft.client.gui.screens.OptionsSubScreen;
@@ -71,10 +72,21 @@ public class ConfigScreen extends OptionsSubScreen {
                 (options) -> Config.tooltipDetailLevel,
                 (options, option, value) -> Config.tooltipDetailLevel = value
         );
+        ProgressOption pvpDurationProgressOption = new ProgressOption(
+                TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_OPTION,
+                0D,
+                120D,
+                1F,
+                (options) -> (double) Config.pvpDisableDuration,
+                (options, value) -> Config.pvpDisableDuration = (int)Math.round(value),
+                (options, progressOption) -> new TranslatableComponent("options.generic_value", new TranslatableComponent(TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_OPTION), Config.pvpDisableDuration == 0 ? new TranslatableComponent(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_OFF) : new TranslatableComponent(TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_VALUE_LABEL, Config.pvpDisableDuration)),
+                (mc) -> mc.font.split(new TranslatableComponent(TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_TOOLTIP), 200)
+        );
         transmogRenderOptionCycleOption.setTooltip((mc) -> (option) -> mc.font.split(new TranslatableComponent(option.getTooltipKey()), 200));
         tooltipDetailLevelCycleOption.setTooltip((mc) -> (option) -> mc.font.split(new TranslatableComponent(option.getTooltipKey()), 200));
         this.list.addBig(transmogRenderOptionCycleOption);
         this.list.addBig(tooltipDetailLevelCycleOption);
+        this.list.addBig(pvpDurationProgressOption);
     }
 
     @Override
