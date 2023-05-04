@@ -1,3 +1,6 @@
+# 1.2.2+1.19.2 - 05/05/2023
+- Add config option to disable transmogs during PvP for set duration
+
 # 1.2.1+1.19.2 - 28/04/2023
 - Significant Performance Optimizations
 
