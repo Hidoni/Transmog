@@ -81,6 +81,15 @@ public class ConfigScreen extends OptionsSubScreen {
                         (option) -> Config.tooltipDetailLevel = option
                 )
         );
+        this.list.addBig(new OptionInstance<>(
+                        TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_OPTION,
+                        OptionInstance.cachedConstantTooltip(Component.translatable(TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_TOOLTIP)),
+                        (component, integer) -> Component.translatable("options.generic_value", component, integer == 0 ? Component.translatable(TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTION_OFF) : Component.translatable(TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_VALUE_LABEL, integer)),
+                        new OptionInstance.IntRange(0, 120),
+                        Config.pvpDisableDuration,
+                        integer -> Config.pvpDisableDuration = integer
+                )
+        );
     }
 
     @Override

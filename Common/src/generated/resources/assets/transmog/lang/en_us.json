@@ -1,6 +1,9 @@
 {
   "block.transmog.transmogrification_table": "Transmogrification Table",
   "item.transmog.void_fragment": "Void Fragment",
+  "transmog.config.disable_during_pvp_duration": "Disable During PvP",
+  "transmog.config.disable_during_pvp_duration.label": "%d Seconds",
+  "transmog.config.disable_during_pvp_duration.tooltip": "Temporarily disable rendering transmogs for a set amount of time if you hit or are hit by another player. Set to 0 to ignore PvP.",
   "transmog.config.render": "Render Transmogs",
   "transmog.config.render.everywhere": "In World & Inventory",
   "transmog.config.render.everywhere.tooltip": "Render transmogs in world, inventories and the hotbar. Items will look like the item they're transmogrified as even in your inventory (Hidden items will still show up as the original item in the inventory). This might get confusing!",

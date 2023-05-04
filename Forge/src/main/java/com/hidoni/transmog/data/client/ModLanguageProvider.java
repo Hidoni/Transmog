@@ -34,5 +34,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add(TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_MINIMAL_CAPTION, "Add the name of the appearance item that an item is transmogrified into to its tooltip.");
         add(TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL, "Full");
         add(TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL_CAPTION, "Add the original tooltip of the appearance item that an item is transmogrified into to its tooltip. This is the default option.");
+        add(TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_OPTION, "Disable During PvP");
+        add(TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_TOOLTIP, "Temporarily disable rendering transmogs for a set amount of time if you hit or are hit by another player. Set to 0 to ignore PvP.");
+        add(TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_VALUE_LABEL, "%d Seconds");
     }
 }

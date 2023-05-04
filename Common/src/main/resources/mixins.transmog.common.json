@@ -10,6 +10,7 @@
     "AbstractContainerScreenMixin",
     "ArmorStandMixin",
     "ItemRendererMixin",
+    "LivingEntityMixin",
     "MobMixin",
     "PlayerMixin"
   ],
