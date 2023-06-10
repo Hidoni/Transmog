@@ -9,6 +9,7 @@
   "client": [
     "AbstractContainerScreenMixin",
     "ArmorStandMixin",
+    "GuiGraphicsMixin",
     "ItemRendererMixin",
     "LivingEntityMixin",
     "MobMixin",

@@ -23,19 +23,4 @@ public class ItemRendererMixin {
     private ItemStack transmog$renderStatic(ItemStack stack) {
         return TransmogUtils.getAppearanceStackOrOriginal(stack);
     }
-
-    @ModifyVariable(method = "renderGuiItem(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/ItemStack;IILnet/minecraft/client/resources/model/BakedModel;)V", at=@At("HEAD"), argsOnly = true)
-    private ItemStack transmog$renderGuiItem(ItemStack stack) {
-        return TransmogUtils.getAppearanceStackOrOriginal(stack);
-    }
-
-    @ModifyVariable(method = "tryRenderGuiItem(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;IIII)V", at=@At("HEAD"), argsOnly = true)
-    private ItemStack transmog$tryRenderGuiItem(ItemStack stack) {
-        return TransmogUtils.getAppearanceStackOrOriginal(stack);
-    }
-
-    @ModifyVariable(method = "renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V", at=@At("HEAD"), argsOnly = true)
-    private ItemStack transmog$renderGuiItemDecorations(ItemStack stack) {
-        return TransmogUtils.getAppearanceStackOrOriginal(stack);
-    }
 }

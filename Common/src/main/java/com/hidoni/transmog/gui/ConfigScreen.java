@@ -4,11 +4,11 @@ import com.hidoni.transmog.config.Config;
 import com.hidoni.transmog.config.TooltipDetailLevel;
 import com.hidoni.transmog.config.TransmogRenderOption;
 import com.hidoni.transmog.i18n.TranslationKeys;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.Codec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.OptionsList;
 import net.minecraft.client.gui.components.Tooltip;
@@ -31,11 +31,11 @@ public class ConfigScreen extends OptionsSubScreen {
     }
 
     @Override
-    public void render(@NotNull PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
-        this.renderBackground(poseStack);
-        this.list.render(poseStack, mouseX, mouseY, partialTick);
-        drawCenteredString(poseStack, this.font, this.title, this.width / 2, 8, ChatFormatting.WHITE.getColor());
-        super.render(poseStack, mouseX, mouseY, partialTick);
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        this.renderBackground(guiGraphics);
+        this.list.render(guiGraphics, mouseX, mouseY, partialTick);
+        guiGraphics.drawCenteredString(this.font, this.title, this.width / 2, 8, ChatFormatting.WHITE.getColor());
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
     }
 
     @Override
