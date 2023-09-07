@@ -9,11 +9,16 @@
   "client": [
     "AbstractContainerScreenMixin",
     "ArmorStandMixin",
+    "EntityRenderDispatcherMixin",
+    "GameRendererMixin",
     "GuiGraphicsMixin",
+    "GuiMixin",
     "ItemRendererMixin",
+    "LevelRendererMixin",
     "LivingEntityMixin",
     "MobMixin",
-    "PlayerMixin"
+    "PlayerMixin",
+    "ScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
