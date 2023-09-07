@@ -28,7 +28,7 @@ public abstract class PlayerMixin extends LivingEntity {
     @Inject(method = "getItemBySlot", at = @At("RETURN"), cancellable = true)
     private void transmogItemBySlot(EquipmentSlot slot, CallbackInfoReturnable<ItemStack> cir) {
         ItemStack returnValue = cir.getReturnValue();
-        if (TransmogUtils.isItemStackTransmogged(returnValue) && RenderUtils.INSTANCE.isCalledForRendering()) {
+        if (TransmogUtils.isItemStackTransmogged(returnValue) && RenderUtils.isCalledForRendering()) {
             cir.setReturnValue(TransmogUtils.getAppearanceStackOrOriginal(returnValue));
         }
     }

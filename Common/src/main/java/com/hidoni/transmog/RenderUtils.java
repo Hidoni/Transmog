@@ -3,53 +3,51 @@ package com.hidoni.transmog;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 public class RenderUtils {
-    public static final RenderUtils INSTANCE = new RenderUtils();
-
     private static int renderCount = 0;
     private static int inventoryCount = 0;
     private static int inventoryExcludedCount = 0;
 
-    public void enterRenderClass() {
+    public static void enterRenderClass() {
         if (RenderSystem.isOnRenderThread()) {
             renderCount++;
         }
     }
 
-    public void exitRenderClass() {
+    public static void exitRenderClass() {
         if (RenderSystem.isOnRenderThread()) {
             renderCount--;
         }
     }
 
-    public void enterInventoryClass() {
+    public static void enterInventoryClass() {
         if (RenderSystem.isOnRenderThread()) {
             inventoryCount++;
         }
     }
 
-    public void exitInventoryClass() {
+    public static void exitInventoryClass() {
         if (RenderSystem.isOnRenderThread()) {
             inventoryCount--;
         }
     }
 
-    public void enterInventoryExcludedClass() {
+    public static void enterInventoryExcludedClass() {
         if (RenderSystem.isOnRenderThread()) {
             inventoryExcludedCount++;
         }
     }
 
-    public void exitInventoryExcludedClass() {
+    public static void exitInventoryExcludedClass() {
         if (RenderSystem.isOnRenderThread()) {
             inventoryExcludedCount--;
         }
     }
 
-    public boolean isCalledForRendering() {
+    public static boolean isCalledForRendering() {
         return RenderSystem.isOnRenderThread() && renderCount > 0;
     }
 
-    public boolean isCalledForInventory() {
+    public static boolean isCalledForInventory() {
         return RenderSystem.isOnRenderThread() && inventoryCount > 0 && inventoryExcludedCount == 0;
     }
 }

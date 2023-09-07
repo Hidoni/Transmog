@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GameRendererMixin {
     @Inject(method = "/^(?!<init>)/", at=@At("HEAD"))
     private void enterFunction(CallbackInfo ci) {
-        RenderUtils.INSTANCE.enterRenderClass();
+        RenderUtils.enterRenderClass();
     }
 
     @Inject(method = "/^(?!<init>)/", at=@At("RETURN"))
     private void exitFunction(CallbackInfo ci) {
-        RenderUtils.INSTANCE.exitRenderClass();
+        RenderUtils.exitRenderClass();
     }
 }

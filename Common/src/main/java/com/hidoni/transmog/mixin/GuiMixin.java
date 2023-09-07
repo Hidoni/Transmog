@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GuiMixin {
     @Inject(method = "/^(?!<init>)/", at=@At("HEAD"))
     private void enterFunction(CallbackInfo ci) {
-        RenderUtils.INSTANCE.enterInventoryClass();
+        RenderUtils.enterInventoryClass();
     }
 
     @Inject(method = "/^(?!<init>)/", at=@At("RETURN"))
     private void exitFunction(CallbackInfo ci) {
-        RenderUtils.INSTANCE.exitInventoryClass();
+        RenderUtils.exitInventoryClass();
     }
 }

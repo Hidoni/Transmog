@@ -68,7 +68,7 @@ public class TransmogUtils {
 
     public static ItemStack getAppearanceStackOrOriginal(ItemStack itemStack) {
         if (notInPvP && Config.renderOption.renderInWorld && isItemStackTransmogged(itemStack)) {
-            if (!RenderUtils.INSTANCE.isCalledForInventory()) {
+            if (!RenderUtils.isCalledForInventory()) {
                 return getAppearanceItemStack(itemStack, false);
             } else if (Config.renderOption.renderInInventory) {
                 ItemStack appearanceItemStack = getAppearanceItemStack(itemStack, true);
