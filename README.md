@@ -5,6 +5,9 @@ Transmog allows you to change the appearance of items without modifying their be
 It works on armor, weapons, tools and anything else you can imagine!  
 
 ![](https://i.imgur.com/woiAHnV.png) ![](https://i.imgur.com/emVdmtV.png) ![](https://i.imgur.com/5if3YW8.png)  
+![](https://i.imgur.com/27uCep2.png)  
+## **Fully compatible with items from mods**  
+![](https://i.imgur.com/Rr4Hjk0.png)
 **For more examples, look at the image/gallery tab on the mod page.**
 
 # Items & Blocks
