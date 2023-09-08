@@ -4,13 +4,23 @@ import com.hidoni.transmog.config.Config;
 import com.hidoni.transmog.registry.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class TransmogUtils {
     private static boolean notInPvP = true;
     private static Thread pvpTimerThread = null;
+
+    private static final int MAX_CACHE_ENTRIES = 100;
+
+    private static final Map<Integer, ItemStack> TRANSMOG_ITEM_CACHE = new LinkedHashMap<>(MAX_CACHE_ENTRIES, 0.75f, true) {
+        public boolean removeEldestEntry(Map.Entry<Integer, ItemStack> eldest) {
+            return size() > MAX_CACHE_ENTRIES + 1;
+        }
+    };
 
     public static void startPvP() {
         if (Config.pvpDisableDuration > 0) {
@@ -47,8 +57,8 @@ public class TransmogUtils {
         return appearanceItem.is(ModItems.VOID_FRAGMENT.get());
     }
 
-    public static ItemStack getAppearanceStackFromItemStack(ItemStack itemStack) {
-        return ItemStack.of(Objects.requireNonNull(itemStack.getTagElement(Constants.TRANSMOG_ITEM_TAG)));
+    public static ItemStack getAppearanceStackFromTag(@NotNull CompoundTag transmogTag) {
+        return ItemStack.of(transmogTag);
     }
 
     public static void transmogAppearanceOntoItemStack(ItemStack appearanceItem, ItemStack itemToTransmog) {
@@ -56,10 +66,11 @@ public class TransmogUtils {
     }
 
     public static ItemStack getAppearanceItemStack(ItemStack itemStack, boolean keepHiddenItem) {
-        if (itemStack.getTagElement(Constants.TRANSMOG_ITEM_TAG) == null || itemStack.isEmpty()) {
+        CompoundTag transmogTag = itemStack.getTagElement(Constants.TRANSMOG_ITEM_TAG);
+        if (transmogTag == null || itemStack.isEmpty()) {
             return itemStack;
         }
-        ItemStack appearanceItem = getAppearanceStackFromItemStack(itemStack);
+        ItemStack appearanceItem = TRANSMOG_ITEM_CACHE.computeIfAbsent(transmogTag.hashCode(), (unused) -> getAppearanceStackFromTag(transmogTag));
         if (!keepHiddenItem && isHiddenItem(appearanceItem)) {
             return ItemStack.EMPTY;
         }
