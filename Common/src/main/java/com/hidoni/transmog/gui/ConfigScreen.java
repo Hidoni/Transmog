@@ -32,10 +32,9 @@ public class ConfigScreen extends OptionsSubScreen {
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        this.renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
         this.list.render(guiGraphics, mouseX, mouseY, partialTick);
         guiGraphics.drawCenteredString(this.font, this.title, this.width / 2, 8, ChatFormatting.WHITE.getColor());
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
     }
 
     @Override
