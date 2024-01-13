@@ -8,7 +8,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 
 public class ModMenus {
-    public static final RegistryEntry<MenuType<TransmogMenu>> TRANSMOG_MENU = ModRegistries.MENUS.register(new ResourceLocation(Constants.MOD_ID, "transmog"), () -> Services.PRIVATE_INTERFACE.createMenu(TransmogMenu::new, FeatureFlags.VANILLA_SET));
+    public static final RegistryEntry<MenuType<?>, MenuType<TransmogMenu>> TRANSMOG_MENU = ModRegistries.MENUS.register(new ResourceLocation(Constants.MOD_ID, "transmog"), () -> Services.PRIVATE_INTERFACE.createMenu(TransmogMenu::new, FeatureFlags.VANILLA_SET));
 
     public static void register() {
     }

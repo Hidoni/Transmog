@@ -9,7 +9,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
 public class ModCreativeModeTabs {
-    public static final RegistryEntry<CreativeModeTab> TRANSMOG_TAB = ModRegistries.CREATIVE_MODE_TABS.register(new ResourceLocation(Constants.MOD_ID, "creative_tab"), () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+    public static final RegistryEntry<CreativeModeTab, CreativeModeTab> TRANSMOG_TAB = ModRegistries.CREATIVE_MODE_TABS.register(new ResourceLocation(Constants.MOD_ID, "creative_tab"), () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
             .icon(() -> {
                 ItemStack itemStack = new ItemStack(ModItems.VOID_FRAGMENT.get());
                 itemStack.getOrCreateTag().putBoolean(VoidFragmentItem.VOID_FRAGMENT_SHOW_FOIL_KEY, false);

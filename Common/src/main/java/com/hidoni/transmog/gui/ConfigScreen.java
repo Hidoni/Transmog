@@ -40,7 +40,7 @@ public class ConfigScreen extends OptionsSubScreen {
     @Override
     protected void init() {
         Minecraft minecraft = Objects.requireNonNullElseGet(this.minecraft, Minecraft::getInstance);
-        this.list = new OptionsList(minecraft, this.width, this.height, 32, this.height - 32, 25);
+        this.list = new OptionsList(minecraft, this.width, this.height - 64, 32, 25);
         this.addConfigOptionsToList();
         this.addWidget(this.list);
         this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, (button) -> {
@@ -89,6 +89,10 @@ public class ConfigScreen extends OptionsSubScreen {
                         integer -> Config.pvpDisableDuration = integer
                 )
         );
+    }
+
+    public void renderBackground(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        this.renderDirtBackground(guiGraphics);
     }
 
     @Override
