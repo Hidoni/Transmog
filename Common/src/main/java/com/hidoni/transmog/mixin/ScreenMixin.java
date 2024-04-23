@@ -9,13 +9,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Screen.class)
 public class ScreenMixin {
-    @Inject(method = "/^(?!<init>)/", at=@At("HEAD"))
-    private void enterFunction(CallbackInfo ci) {
+    @Inject(method = "renderWithTooltip", at=@At("HEAD"))
+    private void enterRenderWithTooltip(CallbackInfo ci) {
         RenderUtils.enterInventoryClass();
     }
 
-    @Inject(method = "/^(?!<init>)/", at=@At("RETURN"))
-    private void exitFunction(CallbackInfo ci) {
+    @Inject(method = "renderWithTooltip", at=@At("RETURN"))
+    private void exitRenderWithTooltip(CallbackInfo ci) {
         RenderUtils.exitInventoryClass();
     }
 }

@@ -8,39 +8,27 @@ public class RenderUtils {
     private static int inventoryExcludedCount = 0;
 
     public static void enterRenderClass() {
-        if (RenderSystem.isOnRenderThread()) {
-            renderCount++;
-        }
+        renderCount++;
     }
 
     public static void exitRenderClass() {
-        if (RenderSystem.isOnRenderThread()) {
-            renderCount--;
-        }
+        renderCount--;
     }
 
     public static void enterInventoryClass() {
-        if (RenderSystem.isOnRenderThread()) {
-            inventoryCount++;
-        }
+        inventoryCount++;
     }
 
     public static void exitInventoryClass() {
-        if (RenderSystem.isOnRenderThread()) {
-            inventoryCount--;
-        }
+        inventoryCount--;
     }
 
     public static void enterInventoryExcludedClass() {
-        if (RenderSystem.isOnRenderThread()) {
-            inventoryExcludedCount++;
-        }
+        inventoryExcludedCount++;
     }
 
     public static void exitInventoryExcludedClass() {
-        if (RenderSystem.isOnRenderThread()) {
-            inventoryExcludedCount--;
-        }
+        inventoryExcludedCount--;
     }
 
     public static boolean isCalledForRendering() {
