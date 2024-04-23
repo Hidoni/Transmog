@@ -4,6 +4,7 @@ import com.hidoni.transmog.Constants;
 import com.hidoni.transmog.TransmogUtils;
 import com.hidoni.transmog.block.entity.TransmogrificationTableBlockEntity;
 import com.hidoni.transmog.registry.ModBlocks;
+import com.hidoni.transmog.registry.ModItemTags;
 import com.hidoni.transmog.registry.ModMenus;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -11,13 +12,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 
 public class TransmogMenu extends AbstractContainerMenu {
     public static final int ITEM_TO_TRANSMOG_SLOT = 0;
     public static final int APPEARANCE_ITEM_SLOT = 1;
-    public static final int AMETHYST_SHARD_SLOT = 2;
+    public static final int FUEL_ITEM_SLOT = 2;
     public static final int OUTPUT_SLOT = 3;
     private static final int INVENTORY_START = 4;
     private static final int INVENTORY_END = INVENTORY_START + 36;
@@ -55,10 +55,10 @@ public class TransmogMenu extends AbstractContainerMenu {
                 return 1;
             }
         });
-        this.addSlot(new Slot(this.inputContainer, AMETHYST_SHARD_SLOT, 11, 17) {
+        this.addSlot(new Slot(this.inputContainer, FUEL_ITEM_SLOT, 11, 17) {
             @Override
             public boolean mayPlace(@NotNull ItemStack itemStack) {
-                return itemStack.is(Items.AMETHYST_SHARD);
+                return itemStack.is(ModItemTags.TRANSMOG_FUELS);
             }
         });
 
@@ -109,8 +109,8 @@ public class TransmogMenu extends AbstractContainerMenu {
             }
         } else {
             boolean move = true;
-            if (item.is(Items.AMETHYST_SHARD)) {
-                move = this.moveItemStackTo(item, AMETHYST_SHARD_SLOT, AMETHYST_SHARD_SLOT + 1, false);
+            if (item.is(ModItemTags.TRANSMOG_FUELS)) {
+                move = this.moveItemStackTo(item, FUEL_ITEM_SLOT, FUEL_ITEM_SLOT + 1, false);
             }
             if (move) {
                 if (!this.moveItemStackTo(item, ITEM_TO_TRANSMOG_SLOT, OUTPUT_SLOT, false)) {
@@ -138,9 +138,9 @@ public class TransmogMenu extends AbstractContainerMenu {
 
     @Override
     public void slotsChanged(@NotNull Container container) {
-        if (getFuel() == 0 && this.getSlot(AMETHYST_SHARD_SLOT).hasItem()) {
+        if (getFuel() == 0 && this.getSlot(FUEL_ITEM_SLOT).hasItem()) {
             refuel();
-            this.getSlot(AMETHYST_SHARD_SLOT).remove(1);
+            this.getSlot(FUEL_ITEM_SLOT).remove(1);
         }
         if (canTransmogItem()) {
             this.setupResultSlot();
