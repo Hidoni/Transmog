@@ -34,6 +34,9 @@ public class TransmogScreen extends AbstractContainerScreen<TransmogMenu> {
         if (this.menu.getSlot(TransmogMenu.APPEARANCE_ITEM_SLOT).hasItem()) {
             guiGraphics.blit(GUI, x + 86, y + 40, 37, 40, 18, 18);
         }
+        if (this.menu.getSlot(TransmogMenu.FUEL_ITEM_SLOT).hasItem()) {
+            guiGraphics.blit(GUI, x + 10, y + 16, 37, 40, 18, 18);
+        }
         if (this.menu.hasFuel()) {
             guiGraphics.blit(GUI, x + 12, y + 38, 176, 0, 14, (int) Math.floor(21 * (this.menu.getFuel() / (float) Constants.TRANSMOG_FUEL_FROM_SHARD)));
         }
