@@ -9,15 +9,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EntityRenderDispatcher.class)
 public class EntityRenderDispatcherMixin {
-    @Inject(method = "/^(?!<init>)/", at=@At("HEAD"))
-    private void enterFunction(CallbackInfo ci) {
-        RenderUtils.enterRenderClass();
+    @Inject(method = "render", at=@At("HEAD"))
+    private void enterInventoryExcludedRender(CallbackInfo ci) {
         RenderUtils.enterInventoryExcludedClass();
     }
-
-    @Inject(method = "/^(?!<init>)/", at=@At("RETURN"))
-    private void exitFunction(CallbackInfo ci) {
-        RenderUtils.exitRenderClass();
+    @Inject(method = "render", at=@At("RETURN"))
+    private void exitInventoryExcludedRender(CallbackInfo ci) {
         RenderUtils.exitInventoryExcludedClass();
     }
 }
