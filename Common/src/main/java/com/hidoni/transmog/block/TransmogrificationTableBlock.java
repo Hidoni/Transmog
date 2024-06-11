@@ -4,11 +4,9 @@ import com.hidoni.transmog.block.entity.TransmogrificationTableBlockEntity;
 import com.hidoni.transmog.registry.ModBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -35,17 +33,15 @@ public class TransmogrificationTableBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
+    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return BASE_SHAPE;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public @NotNull VoxelShape getVisualShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return Shapes.empty();
@@ -56,36 +52,37 @@ public class TransmogrificationTableBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
-    @SuppressWarnings("deprecation")
     public float getShadeBrightness(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return 1.0F;
     }
 
 
-    @SuppressWarnings("deprecation")
     @Override
-    public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hit) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         }
-        BlockEntity entity = level.getBlockEntity(pos);
-        if (entity instanceof TransmogrificationTableBlockEntity transmogBlockEntity) {
-            player.openMenu(transmogBlockEntity);
-        }
+        player.openMenu(state.getMenuProvider(level, pos));
         return InteractionResult.CONSUME;
     }
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return new TransmogrificationTableBlockEntity(pos, state);
+    protected MenuProvider getMenuProvider(@NotNull BlockState state, Level level, @NotNull BlockPos pos) {
+        BlockEntity blockentity = level.getBlockEntity(pos);
+        if (blockentity instanceof TransmogrificationTableBlockEntity transmogrificationTableBlockEntity) {
+            Component component = transmogrificationTableBlockEntity.getDisplayName();
+            return new SimpleMenuProvider(transmogrificationTableBlockEntity, component);
+        } else {
+            return null;
+        }
     }
 
+
+    @Nullable
     @Override
-    public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity entity, @NotNull ItemStack stack) {
-        if (stack.hasCustomHoverName() && (level.getBlockEntity(pos) instanceof TransmogrificationTableBlockEntity transmogBlockEntity)) {
-            transmogBlockEntity.setCustomName(stack.getHoverName());
-        }
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+        return new TransmogrificationTableBlockEntity(pos, state);
     }
 
     @Nullable

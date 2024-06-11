@@ -82,6 +82,8 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
+    implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
+
     compileOnly project(":Common")
 }
 
@@ -139,7 +141,7 @@ curseforge {
             addGameVersion "${it}"
         }
         addGameVersion "Forge"
-        addGameVersion "Java 17"
+        addGameVersion "Java 21"
 
         mainArtifact(tasks.jar) {
             displayName = "[Forge] Transmog $project.version"

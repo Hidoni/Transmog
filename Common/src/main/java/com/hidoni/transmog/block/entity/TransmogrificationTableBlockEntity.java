@@ -5,6 +5,9 @@ import com.hidoni.transmog.i18n.TranslationKeys;
 import com.hidoni.transmog.inventory.TransmogMenu;
 import com.hidoni.transmog.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
@@ -67,20 +70,20 @@ public class TransmogrificationTableBlockEntity extends BlockEntity implements M
     }
 
     @Override
-    protected void saveAdditional(@NotNull CompoundTag tag) {
-        super.saveAdditional(tag);
+    protected void saveAdditional(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider provider) {
+        super.saveAdditional(tag, provider);
         tag.putByte("Fuel", (byte) this.fuel);
         if (this.hasCustomName()) {
-            tag.putString("CustomName", Component.Serializer.toJson(this.name));
+            tag.putString("CustomName", Component.Serializer.toJson(this.name, provider));
         }
     }
 
     @Override
-    public void load(@NotNull CompoundTag tag) {
-        super.load(tag);
+    public void loadAdditional(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider provider) {
+        super.loadAdditional(tag, provider);
         this.fuel = tag.getByte("Fuel");
         if (tag.contains("CustomName", 8)) {
-            this.name = Component.Serializer.fromJson(tag.getString("CustomName"));
+            this.name = Component.Serializer.fromJson(tag.getString("CustomName"), provider);
         }
     }
 
@@ -107,5 +110,17 @@ public class TransmogrificationTableBlockEntity extends BlockEntity implements M
     @NotNull
     public AbstractContainerMenu createMenu(int containerId, @NotNull Inventory inventory, @NotNull Player player) {
         return new TransmogMenu(containerId, inventory, level == null ? ContainerLevelAccess.NULL : ContainerLevelAccess.create(this.level, this.worldPosition), this.dataAccess);
+    }
+
+    @Override
+    protected void applyImplicitComponents(BlockEntity.@NotNull DataComponentInput dataComponentInput) {
+        super.applyImplicitComponents(dataComponentInput);
+        this.name = dataComponentInput.get(DataComponents.CUSTOM_NAME);
+    }
+
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.@NotNull Builder dataComponentInput) {
+        super.collectImplicitComponents(dataComponentInput);
+        dataComponentInput.set(DataComponents.CUSTOM_NAME, this.name);
     }
 }

@@ -2,7 +2,6 @@ package com.hidoni.transmog.renderer;
 
 import com.hidoni.transmog.MathUtils;
 import com.hidoni.transmog.block.entity.TransmogrificationTableBlockEntity;
-import com.hidoni.transmog.item.VoidFragmentItem;
 import com.hidoni.transmog.registry.ModItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -12,6 +11,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -28,7 +28,7 @@ public class TransmogrificationTableBlockEntityRenderer implements BlockEntityRe
 
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         ItemStack stack = new ItemStack(ModItems.VOID_FRAGMENT.get());
-        stack.getOrCreateTag().putBoolean(VoidFragmentItem.VOID_FRAGMENT_SHOW_FOIL_KEY, false);
+        stack.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, false);
 
         poseStack.translate(0.5F, 0.9625F, 0.5F);
         float heightExtra = blockEntity.ticks + partialTick;

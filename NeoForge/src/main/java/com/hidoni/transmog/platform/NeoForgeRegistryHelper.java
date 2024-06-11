@@ -9,7 +9,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
@@ -17,10 +16,17 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Supplier;
 
 public class NeoForgeRegistryHelper implements IRegistryHelper {
-    private static final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    private static IEventBus modEventBus = null;
+
+    public static void setEventBus(IEventBus eventBus) {
+        modEventBus = eventBus;
+    }
 
     @Override
     public <T> RegistryProvider<T> getRegistry(ResourceKey<? extends Registry<T>> resourceKey) {
+        if (modEventBus == null) {
+            throw new NullPointerException("modEventBus is null! Call NeoForgeRegistryHelper.setEventBus() first!");
+        }
         DeferredRegister<T> deferredRegister = DeferredRegister.create(resourceKey, Constants.MOD_ID);
         deferredRegister.register(modEventBus);
         return new RegistryProvider<>() {

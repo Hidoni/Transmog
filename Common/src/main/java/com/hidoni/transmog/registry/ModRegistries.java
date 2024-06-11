@@ -1,6 +1,7 @@
 package com.hidoni.transmog.registry;
 
 import com.hidoni.transmog.platform.Services;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -14,6 +15,7 @@ public class ModRegistries {
     public static final RegistryProvider<BlockEntityType<?>> BLOCK_ENTITIES = Services.REGISTRY.getRegistry(Registries.BLOCK_ENTITY_TYPE);
     public static final RegistryProvider<MenuType<?>> MENUS = Services.REGISTRY.getRegistry(Registries.MENU);
     public static final RegistryProvider<CreativeModeTab> CREATIVE_MODE_TABS = Services.REGISTRY.getRegistry(Registries.CREATIVE_MODE_TAB);
+    public static final RegistryProvider<DataComponentType<?>> DATA_COMPONENT_TYPES = Services.REGISTRY.getRegistry(Registries.DATA_COMPONENT_TYPE);
 
     public static void register() {
         ModBlocks.register();
@@ -21,5 +23,6 @@ public class ModRegistries {
         ModBlockEntities.register();
         ModMenus.register();
         ModCreativeModeTabs.register();
+        ModDataComponents.register();
     }
 }

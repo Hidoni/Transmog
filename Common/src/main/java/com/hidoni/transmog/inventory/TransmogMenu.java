@@ -4,6 +4,7 @@ import com.hidoni.transmog.Constants;
 import com.hidoni.transmog.TransmogUtils;
 import com.hidoni.transmog.block.entity.TransmogrificationTableBlockEntity;
 import com.hidoni.transmog.registry.ModBlocks;
+import com.hidoni.transmog.registry.ModDataComponents;
 import com.hidoni.transmog.registry.ModItemTags;
 import com.hidoni.transmog.registry.ModMenus;
 import net.minecraft.world.Container;
@@ -169,7 +170,7 @@ public class TransmogMenu extends AbstractContainerMenu {
 
     private void outputRemovedTransmog() {
         ItemStack item = this.getSlot(ITEM_TO_TRANSMOG_SLOT).getItem().copyWithCount(1);
-        item.removeTagKey(Constants.TRANSMOG_ITEM_TAG);
+        item.remove(ModDataComponents.TRANSMOG_APPEARANCE_ITEM.get());
         this.resultContainer.setItem(OUTPUT_SLOT, item);
         this.broadcastChanges();
     }

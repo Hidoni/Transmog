@@ -18,6 +18,7 @@
     "ZZZ"
   ],
   "result": {
-    "item": "transmog:transmogrification_table"
+    "count": 1,
+    "id": "transmog:transmogrification_table"
   }
 }
