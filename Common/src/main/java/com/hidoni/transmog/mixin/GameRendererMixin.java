@@ -19,12 +19,12 @@ public class GameRendererMixin {
         RenderUtils.exitRenderClass();
     }
 
-    @Inject(method = "render", at= @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Gui;render(Lnet/minecraft/client/gui/GuiGraphics;F)V", shift= At.Shift.BEFORE))
+    @Inject(method = "render", at= @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Gui;render(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V", shift= At.Shift.BEFORE))
     private void onEnterGui(CallbackInfo ci) {
         RenderUtils.enterInventoryClass();
     }
 
-    @Inject(method = "render", at= @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Gui;render(Lnet/minecraft/client/gui/GuiGraphics;F)V", shift= At.Shift.AFTER))
+    @Inject(method = "render", at= @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/Gui;render(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V", shift= At.Shift.AFTER))
     private void onExitGui(CallbackInfo ci) {
         RenderUtils.exitInventoryClass();
     }

@@ -13,7 +13,7 @@ import net.minecraft.world.level.material.MapColor;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final RegistryEntry<Block, TransmogrificationTableBlock> TRANSMOGRIFICATION_TABLE = registerWithItem(new ResourceLocation(Constants.MOD_ID, "transmogrification_table"), () -> new TransmogrificationTableBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).sound(SoundType.AMETHYST).requiresCorrectToolForDrops().strength(1.5F).noOcclusion().dynamicShape()));
+    public static final RegistryEntry<Block, TransmogrificationTableBlock> TRANSMOGRIFICATION_TABLE = registerWithItem(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "transmogrification_table"), () -> new TransmogrificationTableBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).sound(SoundType.AMETHYST).requiresCorrectToolForDrops().strength(1.5F).noOcclusion().dynamicShape()));
 
     public static void register() {
     }

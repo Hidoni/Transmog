@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class TransmogScreen extends AbstractContainerScreen<TransmogMenu> {
-    private static final ResourceLocation GUI = new ResourceLocation(Constants.MOD_ID, "textures/gui/container/transmogrification_table.png");
+    private static final ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/gui/container/transmogrification_table.png");
 
     public TransmogScreen(TransmogMenu menu, Inventory inventory, Component name) {
         super(menu, inventory, name);
