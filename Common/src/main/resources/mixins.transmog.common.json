@@ -12,6 +12,7 @@
     "EntityRenderDispatcherMixin",
     "GameRendererMixin",
     "GuiGraphicsMixin",
+    "InventoryAccessor",
     "ItemRendererMixin",
     "LivingEntityMixin",
     "MobMixin",

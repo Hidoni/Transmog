@@ -1,0 +1,14 @@
+package com.hidoni.transmog.mixin;
+
+import net.minecraft.world.entity.player.Inventory;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
+
+@Mixin(Inventory.class)
+public interface InventoryAccessor {
+    @Accessor("timesChanged")
+    int getTimesChanged();
+
+    @Accessor("timesChanged")
+    void setTimesChanged(int timesChanged);
+}
