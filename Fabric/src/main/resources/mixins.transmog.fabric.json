@@ -6,9 +6,9 @@
   "mixins": [
   ],
   "client": [
+    "TrinketFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   }
-  }
-  
+}
