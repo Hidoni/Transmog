@@ -1,3 +1,10 @@
+# 1.5.0+1.21 - 06/09/2024
+- Improve compatibility with other mods
+  - Tested with:
+    - Curios
+    - Trinkets
+    - Sophisticated Backpacks
+
 # 1.4.2+1.21 - 14/08/2024
 - Mark version 1.21.1 as supported
 
