@@ -6,6 +6,7 @@
   "mixins": [
   ],
   "client": [
+    "CuriosLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
