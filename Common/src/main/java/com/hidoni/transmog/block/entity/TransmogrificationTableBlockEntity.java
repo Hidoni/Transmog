@@ -21,8 +21,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class TransmogrificationTableBlockEntity extends BlockEntity implements MenuProvider, Nameable {
     public static final int FUEL_INDEX = 0;

@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "transmog",
-  "version": "${version}",
-  "name": "Transmog",
-  "description": "Change the appearance of your items without modifying their behavior/stats!",
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "${description}",
   "authors": [
-    "Hidoni"
+    "${mod_author}"
   ],
   "contributors": [
     "Junshengxie"
@@ -13,7 +13,7 @@
   "contact": {
     "sources": "https://github.com/Hidoni/Transmog"
   },
-  "license": "MIT",
+  "license": "${license}",
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
@@ -32,13 +32,10 @@
     "mixins.transmog.fabric.json"
   ],
   "depends": {
-    "fabricloader": ">=0.15.11",
-    "fabric": "*",
-    "minecraft": [
-      "1.21",
-      "1.21.1"
-    ],
-    "java": ">=21"
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}",
+    "java": ">=${java_version}"
   }
 }
   
