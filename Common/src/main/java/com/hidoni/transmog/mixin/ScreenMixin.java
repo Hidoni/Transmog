@@ -1,21 +1,21 @@
 package com.hidoni.transmog.mixin;
 
 import com.hidoni.transmog.RenderUtils;
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Screen.class)
 public class ScreenMixin {
-    @Inject(method = "renderWithTooltip", at=@At("HEAD"))
-    private void enterRenderWithTooltip(CallbackInfo ci) {
+    @WrapMethod(method = "renderWithTooltip")
+    private void wrapRenderWithTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, Operation<Void> original) {
         RenderUtils.enterInventoryClass();
-    }
-
-    @Inject(method = "renderWithTooltip", at=@At("RETURN"))
-    private void exitRenderWithTooltip(CallbackInfo ci) {
-        RenderUtils.exitInventoryClass();
+        try {
+            original.call(guiGraphics, mouseX, mouseY, partialTick);
+        } finally {
+            RenderUtils.exitInventoryClass();
+        }
     }
 }
