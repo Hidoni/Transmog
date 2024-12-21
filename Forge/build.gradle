@@ -117,7 +117,7 @@ curseforge {
         addGameVersion "Java 21"
 
         mainArtifact(tasks.jarJar) {
-            displayName = "[Forge] Transmog $project.version"
+            displayName = "[Forge] Transmog $project.mod_version+$project.minecraft_version"
         }
         addArtifact(sourcesJar)
     }
@@ -125,8 +125,8 @@ curseforge {
 
 modrinth {
     projectId = project.modrinth_project_id
-    versionName = "[Forge] Transmog $project.version"
-    versionNumber = "forge-${project.version}"
+    versionName = "[Forge] Transmog $project.mod_version+$project.minecraft_version"
+    versionNumber = "forge-${project.mod_version}+${project.minecraft_version}"
     versionType = project.release_type
     changelog = project.ext.changelog
     uploadFile = tasks.jarJar
