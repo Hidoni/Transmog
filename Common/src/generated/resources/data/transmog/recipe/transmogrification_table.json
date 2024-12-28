@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "X": {
-      "item": "transmog:void_fragment"
-    },
-    "Y": {
-      "item": "minecraft:glass"
-    },
-    "Z": {
-      "item": "minecraft:amethyst_block"
-    }
+    "X": "transmog:void_fragment",
+    "Y": "minecraft:glass",
+    "Z": "minecraft:amethyst_block"
   },
   "pattern": [
     " X ",

@@ -1,2 +1,2 @@
-# 1.6.0+1.21.1 - 21/12/2024
-- Further improvements to compatibility with other mods
+# 1.6.0+1.21.3 - 28/12/2024
+- Initial 1.21.3 port

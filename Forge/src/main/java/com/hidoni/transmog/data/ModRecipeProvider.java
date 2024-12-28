@@ -1,5 +1,6 @@
 package com.hidoni.transmog.data;
 
+import com.hidoni.transmog.Constants;
 import com.hidoni.transmog.registry.ModBlocks;
 import com.hidoni.transmog.registry.ModItems;
 import net.minecraft.core.HolderLookup;
@@ -14,13 +15,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends RecipeProvider {
-    public ModRecipeProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> lookup) {
-        super(pOutput, lookup);
+    public ModRecipeProvider(HolderLookup.Provider lookupProvider, RecipeOutput recipeOutput) {
+        super(lookupProvider, recipeOutput);
     }
 
     @Override
-    protected void buildRecipes(@NotNull RecipeOutput output) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TRANSMOGRIFICATION_TABLE.get())
+    protected void buildRecipes() {
+        this.shaped(RecipeCategory.MISC, ModBlocks.TRANSMOGRIFICATION_TABLE.get())
                 .pattern(" X ")
                 .pattern("YZY")
                 .pattern("ZZZ")
@@ -28,8 +29,8 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('Y', Items.GLASS)
                 .define('Z', Items.AMETHYST_BLOCK)
                 .unlockedBy("has_item", has(Items.ENDER_PEARL))
-                .save(output, ModBlocks.TRANSMOGRIFICATION_TABLE.getResourceLocation());
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.VOID_FRAGMENT.get())
+                .save(output);
+        this.shaped(RecipeCategory.MISC, ModItems.VOID_FRAGMENT.get())
                 .pattern(" Z ")
                 .pattern("XYX")
                 .pattern(" X ")
@@ -37,6 +38,22 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('Y', Items.AMETHYST_SHARD)
                 .define('Z', Items.ENDER_PEARL)
                 .unlockedBy("has_item", has(Items.ENDER_PEARL))
-                .save(output, ModItems.VOID_FRAGMENT.getResourceLocation());
+                .save(output);
+    }
+
+    public static class Runner extends RecipeProvider.Runner {
+        protected Runner(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+            super(packOutput, lookupProvider);
+        }
+
+        @Override
+        protected @NotNull RecipeProvider createRecipeProvider(HolderLookup.@NotNull Provider provider, @NotNull RecipeOutput recipeOutput) {
+            return new ModRecipeProvider(provider, recipeOutput);
+        }
+
+        @Override
+        public @NotNull String getName() {
+            return Constants.MOD_NAME + ModRecipeProvider.class.getSimpleName();
+        }
     }
 }

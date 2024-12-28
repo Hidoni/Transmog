@@ -9,6 +9,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
+import java.util.Set;
+
 public class ForgePrivateInterfaceAccessor implements IPrivateInterfaceAccessor {
     @Override
     public <T extends AbstractContainerMenu> MenuType<T> createMenu(MenuSupplier<T> menuSupplier, FeatureFlagSet featureFlagSet) {
@@ -16,8 +18,8 @@ public class ForgePrivateInterfaceAccessor implements IPrivateInterfaceAccessor 
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityType.Builder<T> createBlockEntityTypeBuilder(BlockEntitySupplier<T> blockEntitySupplier, Block... validBlocks) {
-        return BlockEntityType.Builder.of(blockEntitySupplier::create, validBlocks);
+    public <T extends BlockEntity> BlockEntityType<T> createBlockEntityType(BlockEntitySupplier<T> blockEntitySupplier, Block... validBlocks) {
+        return new BlockEntityType<>(blockEntitySupplier::create, Set.of(validBlocks));
     }
 
     @Override

@@ -16,8 +16,8 @@ public class NeoForgePrivateInterfaceAccessor implements IPrivateInterfaceAccess
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityType.Builder<T> createBlockEntityTypeBuilder(BlockEntitySupplier<T> blockEntitySupplier, Block... validBlocks) {
-        return BlockEntityType.Builder.of(blockEntitySupplier::create, validBlocks);
+    public <T extends BlockEntity> BlockEntityType<T> createBlockEntityType(BlockEntitySupplier<T> blockEntitySupplier, Block... validBlocks) {
+        return new BlockEntityType<>(blockEntitySupplier::create, validBlocks);
     }
 
     @Override
