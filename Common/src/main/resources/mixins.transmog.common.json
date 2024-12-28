@@ -13,7 +13,7 @@
     "GameRendererMixin",
     "GuiGraphicsMixin",
     "InventoryAccessor",
-    "ItemRendererMixin",
+    "ItemModelResolverMixin",
     "LivingEntityMixin",
     "MobMixin",
     "PlayerMixin",
