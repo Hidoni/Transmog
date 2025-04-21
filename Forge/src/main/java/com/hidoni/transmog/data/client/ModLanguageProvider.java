@@ -37,5 +37,6 @@ public class ModLanguageProvider extends LanguageProvider {
         add(TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_OPTION, "Disable During PvP");
         add(TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_TOOLTIP, "Temporarily disable rendering transmogs for a set amount of time if you hit or are hit by another player. Set to 0 to ignore PvP.");
         add(TranslationKeys.TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_VALUE_LABEL, "%d Seconds");
+        add(TranslationKeys.TRANSMOG_FUEL_ITEM_TAG, "Transmog Fuels");
     }
 }

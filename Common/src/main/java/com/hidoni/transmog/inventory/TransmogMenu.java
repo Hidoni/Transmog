@@ -194,7 +194,6 @@ public class TransmogMenu extends AbstractContainerMenu {
         return itemCopy;
     }
 
-
     private void refuel() {
         this.transmogBlockData.set(TransmogrificationTableBlockEntity.FUEL_INDEX, Constants.TRANSMOG_FUEL_FROM_SHARD);
     }

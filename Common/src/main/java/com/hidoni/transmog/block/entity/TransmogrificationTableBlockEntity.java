@@ -6,6 +6,7 @@ import com.hidoni.transmog.inventory.TransmogMenu;
 import com.hidoni.transmog.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
@@ -22,6 +23,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class TransmogrificationTableBlockEntity extends BlockEntity implements MenuProvider, Nameable {
     public static final int FUEL_INDEX = 0;
@@ -80,10 +83,10 @@ public class TransmogrificationTableBlockEntity extends BlockEntity implements M
     @Override
     public void loadAdditional(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
-        this.fuel = tag.getByte("Fuel");
-        if (tag.contains("CustomName", 8)) {
-            this.name = Component.Serializer.fromJson(tag.getString("CustomName"), provider);
-        }
+        Optional<Byte> storedFuel = tag.getByte("Fuel");
+        storedFuel.ifPresent(storedFuelByte -> this.fuel = storedFuelByte);
+        Optional<String> storedCustomName = tag.getString("CustomName");
+        storedCustomName.ifPresent(storedCustomNameString -> this.name = Component.Serializer.fromJson(storedCustomNameString, provider));
     }
 
     @Override
@@ -112,9 +115,9 @@ public class TransmogrificationTableBlockEntity extends BlockEntity implements M
     }
 
     @Override
-    protected void applyImplicitComponents(BlockEntity.@NotNull DataComponentInput dataComponentInput) {
-        super.applyImplicitComponents(dataComponentInput);
-        this.name = dataComponentInput.get(DataComponents.CUSTOM_NAME);
+    protected void applyImplicitComponents(@NotNull DataComponentGetter componentGetter) {
+        super.applyImplicitComponents(componentGetter);
+        this.name = componentGetter.get(DataComponents.CUSTOM_NAME);
     }
 
     @Override

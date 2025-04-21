@@ -1,7 +1,7 @@
 package com.hidoni.transmog.registry;
 
 import com.hidoni.transmog.Constants;
-import com.hidoni.transmog.component.TransmogAppearanceItem;
+import com.hidoni.transmog.item.component.TransmogAppearanceItem;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.resources.ResourceLocation;
 

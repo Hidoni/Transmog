@@ -26,32 +26,6 @@ public abstract class PlayerMixin extends LivingEntity {
         super(type, level);
     }
 
-    @Inject(method = "getItemBySlot", at = @At("RETURN"), cancellable = true)
-    private void transmogItemBySlot(EquipmentSlot slot, CallbackInfoReturnable<ItemStack> cir) {
-        if (!RenderUtils.isCalledForRendering()) {
-            return;
-        }
-        ItemStack returnValue = cir.getReturnValue();
-        if (TransmogUtils.isItemStackTransmogged(returnValue)) {
-            cir.setReturnValue(TransmogUtils.getAppearanceStackOrOriginal(returnValue));
-        }
-    }
-
-    @Inject(method = "getInventory", at = @At("RETURN"), cancellable = true)
-    private void transmogInventory(CallbackInfoReturnable<Inventory> cir) {
-        if (!RenderUtils.isCalledForRendering()) {
-            return;
-        }
-        Inventory originalInventory = cir.getReturnValue();
-        Inventory returnInventory = new Inventory(originalInventory.player);
-        returnInventory.selected = originalInventory.selected;
-        ((InventoryAccessor) returnInventory).setTimesChanged(((InventoryAccessor) originalInventory).getTimesChanged());
-        for (int i = 0; i < originalInventory.getContainerSize(); i++) {
-            returnInventory.setItem(i, TransmogUtils.getAppearanceStackOrOriginal(originalInventory.getItem(i)));
-        }
-        cir.setReturnValue(returnInventory);
-    }
-
     @Inject(method = "attack", at = @At("HEAD"))
     private void attack(Entity target, CallbackInfo ci) {
         if (this.isLocalPlayer() && target instanceof Player) {

@@ -1,6 +1,7 @@
 {
   "block.transmog.transmogrification_table": "Transmogrification Table",
   "item.transmog.void_fragment": "Void Fragment",
+  "tag.item.transmog.transmog_fuels": "Transmog Fuels",
   "transmog.config.disable_during_pvp_duration": "Disable During PvP",
   "transmog.config.disable_during_pvp_duration.label": "%d Seconds",
   "transmog.config.disable_during_pvp_duration.tooltip": "Temporarily disable rendering transmogs for a set amount of time if you hit or are hit by another player. Set to 0 to ignore PvP.",

@@ -1,16 +1,23 @@
 package com.hidoni.transmog;
 
-import com.hidoni.transmog.component.TransmogAppearanceItem;
+import com.hidoni.transmog.item.component.TransmogAppearanceItem;
 import com.hidoni.transmog.config.Config;
 import com.hidoni.transmog.registry.ModDataComponents;
 import com.hidoni.transmog.registry.ModItems;
+import it.unimi.dsi.fastutil.objects.ReferenceLinkedOpenHashSet;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.TooltipDisplay;
 
+import java.util.List;
+import java.util.SequencedSet;
 import java.util.concurrent.TimeUnit;
 
 public class TransmogUtils {
     private static boolean notInPvP = true;
     private static Thread pvpTimerThread = null;
+    private static final List<DataComponentType<?>> DATA_COMPONENTS_TO_HIDE = List.of(DataComponents.UNBREAKABLE, DataComponents.ATTRIBUTE_MODIFIERS, DataComponents.CAN_PLACE_ON, DataComponents.CAN_BREAK, DataComponents.DAMAGE);
 
     public static void startPvP() {
         if (Config.pvpDisableDuration > 0) {
@@ -48,6 +55,10 @@ public class TransmogUtils {
     }
 
     public static void transmogAppearanceOntoItemStack(ItemStack appearanceItem, ItemStack itemToTransmog) {
+        TooltipDisplay tooltipDisplay = appearanceItem.getOrDefault(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT);
+        SequencedSet<DataComponentType<?>> hiddenComponents = new ReferenceLinkedOpenHashSet<>(tooltipDisplay.hiddenComponents());
+        hiddenComponents.addAll(DATA_COMPONENTS_TO_HIDE);
+        appearanceItem.set(DataComponents.TOOLTIP_DISPLAY, new TooltipDisplay(tooltipDisplay.hideTooltip(), hiddenComponents));
         itemToTransmog.set(ModDataComponents.TRANSMOG_APPEARANCE_ITEM.get(), new TransmogAppearanceItem(appearanceItem));
     }
 

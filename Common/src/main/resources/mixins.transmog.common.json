@@ -8,14 +8,11 @@
   ],
   "client": [
     "AbstractContainerScreenMixin",
-    "ArmorStandMixin",
     "EntityRenderDispatcherMixin",
     "GameRendererMixin",
     "GuiGraphicsMixin",
-    "InventoryAccessor",
     "ItemModelResolverMixin",
     "LivingEntityMixin",
-    "MobMixin",
     "PlayerMixin",
     "ScreenMixin"
   ],

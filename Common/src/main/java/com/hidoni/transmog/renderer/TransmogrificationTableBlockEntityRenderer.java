@@ -15,6 +15,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 public class TransmogrificationTableBlockEntityRenderer implements BlockEntityRenderer<TransmogrificationTableBlockEntity> {
@@ -23,7 +24,7 @@ public class TransmogrificationTableBlockEntityRenderer implements BlockEntityRe
     }
 
     @Override
-    public void render(@NotNull TransmogrificationTableBlockEntity blockEntity, float partialTick, @NotNull PoseStack poseStack, @NotNull MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+    public void render(@NotNull TransmogrificationTableBlockEntity blockEntity, float partialTick, @NotNull PoseStack poseStack, @NotNull MultiBufferSource bufferSource, int packedLight, int packedOverlay, Vec3 vec3) {
         poseStack.pushPose();
 
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();

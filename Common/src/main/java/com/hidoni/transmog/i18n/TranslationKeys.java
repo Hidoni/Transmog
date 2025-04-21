@@ -1,5 +1,7 @@
 package com.hidoni.transmog.i18n;
 
+import com.hidoni.transmog.registry.ModItemTags;
+
 public class TranslationKeys {
     public static final String TRANSMOG_DESCRIPTION_PREFIX = "transmog.transmog_description";
     public static final String TRANSMOG_HIDDEN = "transmog.transmog_hidden";
@@ -23,4 +25,5 @@ public class TranslationKeys {
     public static final String TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_OPTION = "transmog.config.disable_during_pvp_duration";
     public static final String TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_TOOLTIP = "transmog.config.disable_during_pvp_duration.tooltip";
     public static final String TRANSMOG_CONFIG_DISABLE_DURING_PVP_DURATION_VALUE_LABEL = "transmog.config.disable_during_pvp_duration.label";
+    public static final String TRANSMOG_FUEL_ITEM_TAG = ModItemTags.TRANSMOG_FUELS.location().toLanguageKey("tag.item");
 }
