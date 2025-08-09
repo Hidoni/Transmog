@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(GuiGraphics.class)
 public class GuiGraphicsMixin {
-    @ModifyVariable(method = "renderItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;IIII)V", at=@At("HEAD"), argsOnly = true)
+    @ModifyVariable(method = "Lnet/minecraft/client/gui/GuiGraphics;renderItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;III)V", at=@At("HEAD"), argsOnly = true)
     private ItemStack transmog$renderItem(ItemStack stack) {
         return TransmogUtils.getAppearanceStackOrOriginal(stack);
     }

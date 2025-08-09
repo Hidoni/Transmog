@@ -4,7 +4,7 @@ import com.hidoni.transmog.Constants;
 import com.hidoni.transmog.data.client.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -21,7 +21,7 @@ public class DataGenerators {
         generator.addProvider(true, new ModRecipeProvider.Runner(generator.getPackOutput(), event.getLookupProvider()));
         ModBlockTagsProvider modBlockTagsProvider = new ModBlockTagsProvider(generator.getPackOutput(), event.getLookupProvider(), Constants.MOD_ID, event.getExistingFileHelper());
         generator.addProvider(true, modBlockTagsProvider);
-        generator.addProvider(true, new ModItemTagsProvider(generator.getPackOutput(), event.getLookupProvider(), modBlockTagsProvider.contentsGetter(), Constants.MOD_ID, event.getExistingFileHelper()));
+        generator.addProvider(true, new ModItemTagsProvider(generator.getPackOutput(), event.getLookupProvider(), Constants.MOD_ID, event.getExistingFileHelper()));
         generator.addProvider(true, new ModLootTableProvider(generator.getPackOutput(), event.getLookupProvider()));
     }
 }

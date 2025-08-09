@@ -5,6 +5,7 @@ import com.hidoni.transmog.inventory.TransmogMenu;
 import com.mojang.blaze3d.platform.Lighting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -29,26 +30,24 @@ public class TransmogScreen extends AbstractContainerScreen<TransmogMenu> {
 
     @Override
     protected void renderBg(@NotNull GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
-        Lighting.setupForFlatItems();
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
-        guiGraphics.blit(RenderType::guiTextured, GUI, x, y, 0, 0, this.imageWidth, this.imageHeight, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, GUI, x, y, 0, 0, this.imageWidth, this.imageHeight, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         if (this.menu.getSlot(TransmogMenu.APPEARANCE_ITEM_SLOT).hasItem()) {
-            guiGraphics.blit(RenderType::guiTextured, GUI, x + 86, y + 40, 37, 40, 18, 18, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, GUI, x + 86, y + 40, 37, 40, 18, 18, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
         if (this.menu.getSlot(TransmogMenu.FUEL_ITEM_SLOT).hasItem()) {
-            guiGraphics.blit(RenderType::guiTextured, GUI, x + 10, y + 16, 37, 40, 18, 18, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, GUI, x + 10, y + 16, 37, 40, 18, 18, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
         if (this.menu.hasFuel()) {
-            guiGraphics.blit(RenderType::guiTextured, GUI, x + 12, y + 38, 176, 0, 14, (int) Math.floor(21 * (this.menu.getFuel() / (float) Constants.TRANSMOG_FUEL_FROM_SHARD)), TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, GUI, x + 12, y + 38, 176, 0, 14, (int) Math.floor(21 * (this.menu.getFuel() / (float) Constants.TRANSMOG_FUEL_FROM_SHARD)), TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
         if (this.menu.getSlot(TransmogMenu.ITEM_TO_TRANSMOG_SLOT).hasItem() && this.menu.getSlot(TransmogMenu.APPEARANCE_ITEM_SLOT).hasItem() && this.menu.hasFuel()) {
             ItemStack item = this.menu.getSlot(TransmogMenu.ITEM_TO_TRANSMOG_SLOT).getItem().copyWithCount(1);
             ItemStack transmoggedItem = this.menu.createTransmoggedItem(item);
             if (ItemStack.matches(transmoggedItem, item)) {
-                guiGraphics.blit(RenderType::guiTextured, GUI, x + 110, y + 39, 176, 21, 28, 21, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+                guiGraphics.blit(RenderPipelines.GUI_TEXTURED, GUI, x + 110, y + 39, 176, 21, 28, 21, TEXTURE_WIDTH, TEXTURE_HEIGHT);
             }
         }
-        Lighting.setupFor3DItems();
     }
 }

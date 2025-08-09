@@ -11,6 +11,7 @@ import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.Nameable;
 import net.minecraft.world.entity.player.Inventory;
@@ -21,6 +22,8 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -72,21 +75,17 @@ public class TransmogrificationTableBlockEntity extends BlockEntity implements M
     }
 
     @Override
-    protected void saveAdditional(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider provider) {
-        super.saveAdditional(tag, provider);
-        tag.putByte("Fuel", (byte) this.fuel);
-        if (this.hasCustomName()) {
-            tag.putString("CustomName", Component.Serializer.toJson(this.name, provider));
-        }
+    protected void saveAdditional(@NotNull ValueOutput output) {
+        super.saveAdditional(output);
+        output.putByte("Fuel", (byte) this.fuel);
+        output.storeNullable("CustomName", ComponentSerialization.CODEC, this.name);
     }
 
     @Override
-    public void loadAdditional(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider provider) {
-        super.loadAdditional(tag, provider);
-        Optional<Byte> storedFuel = tag.getByte("Fuel");
-        storedFuel.ifPresent(storedFuelByte -> this.fuel = storedFuelByte);
-        Optional<String> storedCustomName = tag.getString("CustomName");
-        storedCustomName.ifPresent(storedCustomNameString -> this.name = Component.Serializer.fromJson(storedCustomNameString, provider));
+    public void loadAdditional(@NotNull ValueInput input) {
+        super.loadAdditional(input);
+        this.fuel = input.getByteOr("Fuel", (byte) 0);
+        this.name = parseCustomNameSafe(input, "CustomName");
     }
 
     @Override

@@ -1,16 +1,18 @@
 package com.hidoni.transmog;
 
 import com.hidoni.transmog.platform.ForgeRegistryHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 @Mod(Constants.MOD_ID)
 public class TransmogForge {
     public TransmogForge(FMLJavaModLoadingContext context) {
-        ForgeRegistryHelper.setEventBus(context.getModEventBus());
+        ForgeRegistryHelper.setEventBus(context.getModBusGroup());
         Transmog.init();
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> TransmogForgeClient.init(context));
+
+        if (FMLEnvironment.dist.isClient()) {
+            TransmogForgeClient.init(context);
+        }
     }
 }

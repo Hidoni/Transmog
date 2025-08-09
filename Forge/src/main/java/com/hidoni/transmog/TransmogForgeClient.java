@@ -8,10 +8,9 @@ import com.hidoni.transmog.registry.ModMenus;
 import com.hidoni.transmog.renderer.TransmogrificationTableBlockEntityRenderer;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraftforge.client.ConfigScreenHandler;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -19,8 +18,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class TransmogForgeClient {
     public static void init(FMLJavaModLoadingContext context) {
-        IEventBus modEventBus = context.getModEventBus();
-        modEventBus.addListener(TransmogForgeClient::registerClientOnly);
+        FMLClientSetupEvent.getBus(context.getModBusGroup()).addListener(TransmogForgeClient::registerClientOnly);
     }
 
     public static void registerClientOnly(FMLClientSetupEvent event) {
@@ -29,7 +27,7 @@ public class TransmogForgeClient {
         ModContainer modContainer = ModList.get().getModContainerById(Constants.MOD_ID).orElseThrow();
         modContainer.registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory((mc, screen) -> new ConfigScreen(screen)));
         event.enqueueWork(() -> {
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.TRANSMOGRIFICATION_TABLE.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.TRANSMOGRIFICATION_TABLE.get(), ChunkSectionLayer.CUTOUT);
         });
     }
 }

@@ -8,9 +8,9 @@
   ],
   "client": [
     "AbstractContainerScreenMixin",
-    "EntityRenderDispatcherMixin",
     "GameRendererMixin",
     "GuiGraphicsMixin",
+    "InventoryScreenMixin",
     "ItemModelResolverMixin",
     "LivingEntityMixin",
     "PlayerMixin",
