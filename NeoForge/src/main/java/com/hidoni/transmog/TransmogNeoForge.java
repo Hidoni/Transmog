@@ -12,7 +12,7 @@ public class TransmogNeoForge {
         NeoForgeRegistryHelper.setEventBus(eventBus);
 
         Transmog.init();
-        if (FMLEnvironment.dist == Dist.CLIENT) {
+        if (FMLEnvironment.getDist().isClient()) {
             TransmogNeoForgeClient.init(eventBus);
         }
     }

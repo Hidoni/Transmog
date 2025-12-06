@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(Screen.class)
 public class ScreenMixin {
-    @WrapMethod(method = "renderWithTooltip")
+    @WrapMethod(method = "renderWithTooltipAndSubtitles")
     private void wrapRenderWithTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, Operation<Void> original) {
         RenderUtils.enterInventoryClass();
         try {
