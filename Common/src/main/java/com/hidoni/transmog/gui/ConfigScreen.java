@@ -39,11 +39,9 @@ public class ConfigScreen extends OptionsSubScreen {
             this.list.addBig(new OptionInstance<>(
                             TranslationKeys.TRANSMOG_CONFIG_RENDER_OPTIONS,
                             (option) -> Tooltip.create(Component.translatable(option.getTooltipKey())),
-                            OptionInstance.forOptionEnum(),
+                            (component, option) -> Component.translatable(option.getKey()),
                             new OptionInstance.Enum<>(Arrays.asList(TransmogRenderOption.values()),
-                                    Codec.INT.xmap(
-                                            TransmogRenderOption::fromId,
-                                            TransmogRenderOption::getId)
+                                    TransmogRenderOption.CODEC
                             ),
                             Config.renderOption,
                             (option) -> Config.renderOption = option
@@ -52,11 +50,9 @@ public class ConfigScreen extends OptionsSubScreen {
             this.list.addBig(new OptionInstance<>(
                             TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTIONS,
                             (option) -> Tooltip.create(Component.translatable(option.getTooltipKey())),
-                            OptionInstance.forOptionEnum(),
+                            (component, option) -> Component.translatable(option.getKey()),
                             new OptionInstance.Enum<>(Arrays.asList(TooltipDetailLevel.values()),
-                                    Codec.INT.xmap(
-                                            TooltipDetailLevel::fromId,
-                                            TooltipDetailLevel::getId)
+                                    TooltipDetailLevel.CODEC
                             ),
                             Config.tooltipDetailLevel,
                             (option) -> Config.tooltipDetailLevel = option

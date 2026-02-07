@@ -4,12 +4,12 @@ import com.hidoni.transmog.Constants;
 import com.hidoni.transmog.i18n.TranslationKeys;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
 public class ModCreativeModeTabs {
-    public static final RegistryEntry<CreativeModeTab, CreativeModeTab> TRANSMOG_TAB = ModRegistries.CREATIVE_MODE_TABS.register(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "creative_tab"), () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+    public static final RegistryEntry<CreativeModeTab, CreativeModeTab> TRANSMOG_TAB = ModRegistries.CREATIVE_MODE_TABS.register(Identifier.fromNamespaceAndPath(Constants.MOD_ID, "creative_tab"), () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
             .icon(() -> {
                 ItemStack itemStack = new ItemStack(ModItems.VOID_FRAGMENT.get());
                 itemStack.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, false);

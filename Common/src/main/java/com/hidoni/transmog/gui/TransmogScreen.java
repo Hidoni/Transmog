@@ -2,19 +2,17 @@ package com.hidoni.transmog.gui;
 
 import com.hidoni.transmog.Constants;
 import com.hidoni.transmog.inventory.TransmogMenu;
-import com.mojang.blaze3d.platform.Lighting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class TransmogScreen extends AbstractContainerScreen<TransmogMenu> {
-    private static final ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/gui/container/transmogrification_table.png");
+    private static final Identifier GUI = Identifier.fromNamespaceAndPath(Constants.MOD_ID, "textures/gui/container/transmogrification_table.png");
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
 

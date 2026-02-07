@@ -1,24 +1,28 @@
 package com.hidoni.transmog.config;
 
 import com.hidoni.transmog.i18n.TranslationKeys;
-import net.minecraft.util.OptionEnum;
+import com.mojang.serialization.Codec;
+import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
-public enum TooltipDetailLevel implements OptionEnum {
-    NONE(0, TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_NONE),
-    MINIMAL(1, TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_MINIMAL),
-    FULL(2, TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL);
-    private final int id;
+public enum TooltipDetailLevel implements StringRepresentable {
+    NONE("0", TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_NONE),
+    MINIMAL("1", TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_MINIMAL),
+    FULL("2", TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL);
+    private final String serializedName;
     private final String translationKey;
 
-    TooltipDetailLevel(int id, String translationKey) {
-        this.id = id;
+    public static final Codec<TooltipDetailLevel> CODEC = StringRepresentable.fromEnum(TooltipDetailLevel::values);
+
+    TooltipDetailLevel(String serializedName, String translationKey) {
+        this.serializedName = serializedName;
         this.translationKey = translationKey;
     }
 
     @Override
-    public int getId() {
-        return this.id;
+    public @NonNull String getSerializedName() {
+        return this.serializedName;
     }
 
     public static TooltipDetailLevel fromId(int id) {
@@ -29,7 +33,6 @@ public enum TooltipDetailLevel implements OptionEnum {
         };
     }
 
-    @Override
     public @NotNull String getKey() {
         return this.translationKey;
     }
