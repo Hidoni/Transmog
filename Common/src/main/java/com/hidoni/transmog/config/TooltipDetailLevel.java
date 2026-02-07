@@ -25,14 +25,6 @@ public enum TooltipDetailLevel implements StringRepresentable {
         return this.serializedName;
     }
 
-    public static TooltipDetailLevel fromId(int id) {
-        return switch (id) {
-            case 0 -> NONE;
-            case 1 -> MINIMAL;
-            default -> FULL;
-        };
-    }
-
     public @NotNull String getKey() {
         return this.translationKey;
     }
