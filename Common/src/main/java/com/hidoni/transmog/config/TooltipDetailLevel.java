@@ -7,9 +7,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
 public enum TooltipDetailLevel implements StringRepresentable {
-    NONE("0", TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_NONE),
-    MINIMAL("1", TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_MINIMAL),
-    FULL("2", TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL);
+    NONE("none", TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_NONE),
+    MINIMAL("minimal", TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_MINIMAL),
+    FULL("full", TranslationKeys.TRANSMOG_CONFIG_TOOLTIP_OPTION_FULL);
     private final String serializedName;
     private final String translationKey;
 
