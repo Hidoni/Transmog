@@ -77,10 +77,14 @@ public class TransmogUtils {
     }
 
     public static ItemStack getAppearanceStackOrOriginal(ItemStack itemStack) {
+        return getAppearanceStackOrOriginal(itemStack, false);
+    }
+
+    public static ItemStack getAppearanceStackOrOriginal(ItemStack itemStack, boolean isForInventory) {
         if (notInPvP && Config.renderOption.renderInWorld && isItemStackTransmogged(itemStack)) {
             if (!RenderUtils.isCalledForInventory()) {
                 return getAppearanceItemStack(itemStack, false);
-            } else if (Config.renderOption.renderInInventory) {
+            } else if (Config.renderOption.renderInInventory && isForInventory) {
                 ItemStack appearanceItemStack = getAppearanceItemStack(itemStack, true);
                 if (isHiddenItem(appearanceItemStack)) {
                     return itemStack;

@@ -72,13 +72,11 @@ public class ConfigScreen extends OptionsSubScreen {
 
     @Override
     public void removed() {
+        Config.writeConfigToFile();
     }
 
     @Override
     public void onClose() {
-        if (this.list != null) {
-            Config.writeConfigToFile();
-        }
-        Objects.requireNonNull(this.minecraft).setScreen(this.lastScreen);
+        this.minecraft.setScreen(this.lastScreen);
     }
 }

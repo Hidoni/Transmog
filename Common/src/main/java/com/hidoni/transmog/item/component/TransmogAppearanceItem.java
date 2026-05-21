@@ -25,7 +25,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 public record TransmogAppearanceItem(ItemStack itemStack) implements TooltipProvider {
-    public static final Codec<TransmogAppearanceItem> CODEC = RecordCodecBuilder.create(instance -> instance.group(ItemStack.SINGLE_ITEM_CODEC.fieldOf("itemStack").forGetter(TransmogAppearanceItem::itemStack)).apply(instance, TransmogAppearanceItem::new));
+    public static final Codec<TransmogAppearanceItem> CODEC = RecordCodecBuilder.create(instance -> instance.group(ItemStack.CODEC.fieldOf("itemStack").forGetter(TransmogAppearanceItem::itemStack)).apply(instance, TransmogAppearanceItem::new));
     public static final StreamCodec<RegistryFriendlyByteBuf, TransmogAppearanceItem> STREAM_CODEC = StreamCodec.composite(ItemStack.OPTIONAL_STREAM_CODEC, TransmogAppearanceItem::itemStack, TransmogAppearanceItem::new);
     private static final String[] TRANSLATION_KEYS_TO_REMOVE = {"item.op_warning.*", "item.durability", "item.disabled", "item.components"};
 

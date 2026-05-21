@@ -1,2 +1,3 @@
-# 1.7.2+1.21.11 - 07/02/2026
-- Initial 1.21.11 port
+# 1.8.0+26.1 - 22/05/2026
+- Initial 26.1 port
+  - Minor changes to rendering logic under the hood – please report any bugs!
