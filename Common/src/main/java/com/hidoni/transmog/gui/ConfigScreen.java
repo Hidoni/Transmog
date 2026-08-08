@@ -28,9 +28,9 @@ public class ConfigScreen extends OptionsSubScreen {
         LinearLayout linearLayout = this.layout.addToFooter(LinearLayout.horizontal()).spacing(8);
         linearLayout.addChild(Button.builder(CommonComponents.GUI_CANCEL, (button) -> {
             Config.loadConfigFromFile();
-            Objects.requireNonNull(this.minecraft).setScreen(this.lastScreen);
+            this.minecraft.gui.setScreen(this.lastScreen);
         }).width(200).build());
-        linearLayout.addChild(Button.builder(CommonComponents.GUI_DONE, (button -> Objects.requireNonNull(this.minecraft).setScreen(this.lastScreen))).width(200).build());
+        linearLayout.addChild(Button.builder(CommonComponents.GUI_DONE, (button -> this.minecraft.gui.setScreen(this.lastScreen))).width(200).build());
     }
 
     @Override
@@ -77,6 +77,6 @@ public class ConfigScreen extends OptionsSubScreen {
 
     @Override
     public void onClose() {
-        this.minecraft.setScreen(this.lastScreen);
+        this.minecraft.gui.setScreen(this.lastScreen);
     }
 }

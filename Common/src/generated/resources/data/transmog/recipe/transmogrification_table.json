@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "X": "transmog:void_fragment",
     "Y": "minecraft:glass",

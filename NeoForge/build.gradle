@@ -56,6 +56,8 @@ curseforge {
         }
         addGameVersion "NeoForge"
         addGameVersion "Java ${java_version}"
+        addGameVersion "Client"
+        addGameVersion "Server"
 
         mainArtifact(tasks.jar) {
             displayName = "[NeoForge] Transmog $project.mod_version+$project.minecraft_version"

@@ -1,3 +1,2 @@
-# 1.8.0+26.1 - 22/05/2026
-- Initial 26.1 port
-  - Minor changes to rendering logic under the hood – please report any bugs!
+# 1.8.0+26.2 - 08/08/2026
+- Initial 26.2 port

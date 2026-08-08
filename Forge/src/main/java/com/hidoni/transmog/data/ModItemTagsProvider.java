@@ -4,6 +4,7 @@ import com.hidoni.transmog.registry.ModItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.VanillaItemTagsProvider;
+import net.minecraft.references.ItemIds;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -18,6 +19,6 @@ public class ModItemTagsProvider extends VanillaItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
-        this.tag(ModItemTags.TRANSMOG_FUELS).add(Items.AMETHYST_SHARD);
+        this.tag(ModItemTags.TRANSMOG_FUELS).add(ItemIds.AMETHYST_SHARD);
     }
 }
