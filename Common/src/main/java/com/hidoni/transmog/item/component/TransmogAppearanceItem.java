@@ -23,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public record TransmogAppearanceItem(ItemStack itemStack) implements TooltipProvider {
     public static final Codec<TransmogAppearanceItem> CODEC = RecordCodecBuilder.create(instance -> instance.group(ItemStack.CODEC.fieldOf("itemStack").forGetter(TransmogAppearanceItem::itemStack)).apply(instance, TransmogAppearanceItem::new));
@@ -54,14 +55,12 @@ public record TransmogAppearanceItem(ItemStack itemStack) implements TooltipProv
                 consumer.accept(Component.literal(BuiltInRegistries.ITEM.getKey(itemStack.getItem()).toString()).withStyle(ChatFormatting.DARK_GRAY));
             }
         } else {
-            List<Component> tooltipLines = itemStack.getTooltipLines(tooltipContext, null, tooltipFlag).stream().filter(TransmogAppearanceItem::keepTooltipLine).toList();
-            if (tooltipLines.getLast().equals(CommonComponents.EMPTY)) {
+            ArrayList<Component> tooltipLines = itemStack.getTooltipLines(tooltipContext, null, tooltipFlag).stream().filter(TransmogAppearanceItem::keepTooltipLine).collect(Collectors.toCollection(ArrayList::new));
+            while (!tooltipLines.isEmpty() && tooltipLines.getLast().equals(CommonComponents.EMPTY)) {
                 tooltipLines.removeLast();
             }
             for (Component tooltipLine : tooltipLines) {
-                if (keepTooltipLine(tooltipLine)) {
-                    consumer.accept(tooltipLine);
-                }
+                consumer.accept(tooltipLine);
             }
         }
     }
