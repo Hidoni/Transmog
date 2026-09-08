@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ItemModelResolver.class)
 public class ItemModelResolverMixin {
-    @ModifyVariable(method = "updateForTopItem", at=@At("HEAD"), argsOnly = true)
-    private ItemStack transmog$updateForTopItem(ItemStack stack) {
+    @ModifyVariable(method = "appendItemLayers", at=@At("HEAD"), argsOnly = true)
+    private ItemStack transmog$appendItemLayers(ItemStack stack) {
         return TransmogUtils.getAppearanceStackOrOriginal(stack);
     }
 }
