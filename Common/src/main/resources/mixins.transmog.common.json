@@ -12,7 +12,7 @@
     "InventoryScreenMixin",
     "ItemModelResolverMixin",
     "LivingEntityMixin",
-    "PlayerMixin",
+    "PlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
