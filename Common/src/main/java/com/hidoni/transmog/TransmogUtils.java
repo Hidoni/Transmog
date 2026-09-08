@@ -13,37 +13,38 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import java.util.List;
 import java.util.SequencedSet;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class TransmogUtils {
-    private static boolean notInPvP = true;
-    private static Thread pvpTimerThread = null;
+    private static final long NOT_IN_PVP = 0L;
+    private static final AtomicLong pvpDisabledUntil = new AtomicLong(NOT_IN_PVP);
     private static final List<DataComponentType<?>> DATA_COMPONENTS_TO_HIDE = List.of(DataComponents.UNBREAKABLE, DataComponents.ATTRIBUTE_MODIFIERS, DataComponents.CAN_PLACE_ON, DataComponents.CAN_BREAK, DataComponents.DAMAGE);
 
     public static void startPvP() {
         if (Config.pvpDisableDuration > 0) {
-            setNotInPvP(false);
-            if (pvpTimerThread != null) {
+            long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(Config.pvpDisableDuration);
+            long previousDeadline = pvpDisabledUntil.getAndSet(deadline);
+            if (previousDeadline != NOT_IN_PVP && previousDeadline - System.nanoTime() > 0) {
                 Constants.LOG.info("Client player still involved in PvP, Extending transmog disable for another {} seconds", Config.pvpDisableDuration);
-                Constants.LOG.debug("Interrupting existing PvP timer thread: {}", pvpTimerThread);
-                pvpTimerThread.interrupt();
             } else {
                 Constants.LOG.info("Client player involved in PvP, Disabling transmogs for {} seconds", Config.pvpDisableDuration);
             }
-            pvpTimerThread = new Thread(() -> {
-                try {
-                    TimeUnit.SECONDS.sleep(Config.pvpDisableDuration);
-                    setNotInPvP(true);
-                    Constants.LOG.info("PvP Timer finished, Transmog re-enabled.");
-                } catch (InterruptedException ignored) {
-                }
-            });
-            pvpTimerThread.start();
-            Constants.LOG.debug("Created new PvP timer thread: {}", pvpTimerThread);
         }
     }
 
-    private static synchronized void setNotInPvP(boolean notInPvP) {
-        TransmogUtils.notInPvP = notInPvP;
+    private static boolean isInPvP() {
+        long deadline;
+        do {
+            deadline = pvpDisabledUntil.get();
+            if (deadline == NOT_IN_PVP) {
+                return false;
+            }
+            if (deadline - System.nanoTime() > 0) {
+                return true;
+            }
+        } while (!pvpDisabledUntil.compareAndSet(deadline, NOT_IN_PVP));
+        Constants.LOG.info("PvP Timer finished, Transmog re-enabled.");
+        return false;
     }
 
     public static boolean isItemStackTransmogged(ItemStack itemStack) {
@@ -81,7 +82,7 @@ public class TransmogUtils {
     }
 
     public static ItemStack getAppearanceStackOrOriginal(ItemStack itemStack, boolean isForInventory) {
-        if (notInPvP && Config.renderOption.renderInWorld && isItemStackTransmogged(itemStack)) {
+        if (!isInPvP() && Config.renderOption.renderInWorld && isItemStackTransmogged(itemStack)) {
             if (!RenderUtils.isCalledForInventory()) {
                 return getAppearanceItemStack(itemStack, false);
             } else if (Config.renderOption.renderInInventory && isForInventory) {
