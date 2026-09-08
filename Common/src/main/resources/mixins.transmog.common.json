@@ -8,7 +8,7 @@
   ],
   "client": [
     "GameRendererMixin",
-    "GuiGraphicsMixin",
+    "GuiGraphicsExtractorMixin",
     "InventoryScreenMixin",
     "ItemModelResolverMixin",
     "LivingEntityMixin",

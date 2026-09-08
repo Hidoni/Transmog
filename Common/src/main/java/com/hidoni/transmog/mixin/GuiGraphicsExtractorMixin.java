@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(GuiGraphicsExtractor.class)
-public class GuiGraphicsMixin {
+public class GuiGraphicsExtractorMixin {
     @ModifyVariable(method = "item(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;III)V", at=@At("HEAD"), argsOnly = true)
     private ItemStack transmogItem(ItemStack stack) {
         return TransmogUtils.getAppearanceStackOrOriginal(stack, true);
