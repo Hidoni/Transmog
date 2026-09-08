@@ -2,12 +2,12 @@ package com.hidoni.transmog.mixin;
 
 import com.hidoni.transmog.RenderUtils;
 import com.hidoni.transmog.TransmogUtils;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
@@ -33,14 +32,11 @@ public abstract class LivingEntityMixin extends Entity {
         }
     }
 
-    @Inject(method = "getItemBySlot", at = @At("RETURN"), cancellable = true)
-    private void transmogItemBySlot(EquipmentSlot slot, CallbackInfoReturnable<ItemStack> cir) {
+    @ModifyReturnValue(method = "getItemBySlot", at = @At("RETURN"))
+    private ItemStack transmogItemBySlot(ItemStack original) {
         if (!RenderUtils.isCalledForRendering()) {
-            return;
+            return original;
         }
-        ItemStack returnValue = cir.getReturnValue();
-        if (TransmogUtils.isItemStackTransmogged(returnValue)) {
-            cir.setReturnValue(TransmogUtils.getAppearanceStackOrOriginal(returnValue));
-        }
+        return TransmogUtils.getAppearanceStackOrOriginal(original);
     }
 }
