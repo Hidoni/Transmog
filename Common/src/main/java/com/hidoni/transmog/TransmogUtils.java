@@ -89,8 +89,7 @@ public class TransmogUtils {
                 if (isHiddenItem(appearanceItemStack)) {
                     return itemStack;
                 }
-                appearanceItemStack.setCount(itemStack.getCount());
-                return appearanceItemStack;
+                return appearanceItemStack.copyWithCount(itemStack.getCount());
             }
         }
         return itemStack;
